@@ -1,0 +1,72 @@
+        # self.overlay_widget =  ui_functions.OverlayWidget(self.CentralWidget)
+        
+        # self.overlay_widget.setMinimumSize(QSize(0, 0))
+        # self.overlay_widget.setMaximumSize(QSize(0, 16777215))
+        # self.SettingsExpand.setParent(self.overlay_widget) 
+
+        # sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        # sizePolicy.setHorizontalStretch(0)
+        # sizePolicy.setVerticalStretch(0)
+        # sizePolicy.setHeightForWidth(self.overlay_widget.sizePolicy().hasHeightForWidth())
+        # self.overlay_widget.setSizePolicy(sizePolicy)
+
+    # def resizeEvent(self, event):
+    #     # Resize the overlay_widget here     
+    #     width = self.CentralWidget.geometry().width()      
+    #     self.overlay_widget.setGeometry(60, 0, width, self.CentralWidget.geometry().height()) 
+    #     super().resizeEvent(event)
+
+    # class OverlayWidget(QWidget):
+#     def __init__(self, parent=None):
+#         super().__init__(parent)
+#         self.setWindowFlags(Qt.FramelessWindowHint)
+#         self.setAttribute(Qt.WA_TranslucentBackground)
+#     def paintEvent(self, event):
+#         painter = QPainter(self)
+#         painter.setBrush(QColor(0, 0, 0, 127))  # semi-transparent black
+#         painter.drawRect(self.rect())
+
+    # # GET WIDTH
+    # width = main_window.overlay_widget.width()
+    # # Check values
+    # if width == 0:
+    #     widthExtended = 240
+    #     main_window.overlay_widget.setGeometry(60, 0, width, main_window.CentralWidget.geometry().height()) 
+
+    # else:
+    #     widthExtended = 0  
+    #     main_window.overlay_widget.setGeometry(60, 0, width, main_window.CentralWidget.geometry().height()) 
+    # print(width)
+    # print(widthExtended)
+    # main_window.left_box = QPropertyAnimation(main_window.overlay_widget, b"minimumWidth")
+    # main_window.left_box.setDuration(Settings.TIME_ANIMATION)
+    # main_window.left_box.setStartValue(width)
+    # main_window.left_box.setEndValue(widthExtended)
+    # main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
+    # main_window.left_box.start()
+
+            # resetStyle(main_window, btn_name)
+        # btn.setStyleSheet(selectMenu(btn.styleSheet()))
+
+
+
+        self.btn_home.setStyleSheet(ui_functions.selectMenu(self.btn_home.styleSheet()))
+
+ self.btn_home.clicked.connect(lambda: ui_functions.button_click(self, self.btn_home)) 
+        
+# SELECT/DESELECT MENU
+
+def selectMenu(getStyle):
+    select = getStyle + Settings.MENU_SELECTED_STYLESHEET
+    return select
+
+# DESELECT
+def deselectMenu(getStyle):
+    deselect = getStyle.replace(Settings.MENU_SELECTED_STYLESHEET, "")
+    return deselect
+
+# RESET SELECTION
+def resetStyle(main_window, widget):
+    for w in main_window.TopMenu.findChildren(QPushButton):
+        if w.objectName() != widget:
+            w.setStyleSheet(main_window.deselectMenu(w.styleSheet()))
