@@ -2,7 +2,7 @@ from PySide6.QtWidgets import (QMessageBox, QFileDialog, QSizePolicy, QGroupBox,
                                QHBoxLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QHeaderView,
                                QLineEdit, QPushButton, QWidget, QAbstractItemView)
 from PySide6.QtCore import QDir, QSize, QEasingCurve, QPropertyAnimation, Qt
-from PySide6.QtGui import QIcon, QPainter, QColor
+from PySide6.QtGui import QIcon, QPainter, QColor, QMovie 
 from srt import parse, SRTParseError, compose
 from openai import AsyncOpenAI, APIConnectionError, AuthenticationError, embeddings
 from qasync import asyncSlot
@@ -35,6 +35,25 @@ def expand_settings(main_window):
     else:
         widthExtended = 0   
     main_window.left_box = QPropertyAnimation(main_window.SettingsExpand, b"minimumWidth")
+    main_window.left_box.setDuration(Settings.TIME_ANIMATION)
+    main_window.left_box.setStartValue(width)
+    main_window.left_box.setEndValue(widthExtended)
+    main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
+    main_window.left_box.start()
+
+def on_box_cosine_changed(main_window, check_box):
+    if check_box.isChecked():
+        main_window.threshold_edit.setEnabled(True)
+    else:
+        main_window.threshold_edit.setEnabled(False)
+
+def expand_about(main_window):
+    width = main_window.AboutFrame.width()
+    if width == 0:
+        widthExtended = Settings.EXPAND_WIDTH 
+    else:
+        widthExtended = 0   
+    main_window.left_box = QPropertyAnimation(main_window.AboutFrame, b"minimumWidth")
     main_window.left_box.setDuration(Settings.TIME_ANIMATION)
     main_window.left_box.setStartValue(width)
     main_window.left_box.setEndValue(widthExtended)
@@ -148,7 +167,12 @@ def cosine_similarity(sentences_embeddings, translations_embeddings):
 @asyncSlot()
 async def communicate_with_api(main_window):
 
-    # CHANGE SOME BUTTONS' BEHAVIOR
+    movie = QMovie(":/gifs/images/loading.gif") 
+    movie.setScaledSize(QSize(45, 45))
+    main_window.loading_gif.setMovie(movie) 
+    main_window.loading_gif.show()
+    movie.start()
+  
     main_window.btn_start.setIcon(QIcon(":/icons/images/icons/cil-media-pause.png"))
     main_window.btn_start.setEnabled(False)
     main_window.btn_back.setEnabled(False)
@@ -228,7 +252,7 @@ async def communicate_with_api(main_window):
                 if (main_window.box_cosine.isChecked()):
                     translations_embeddings = await get_embeddings(client, translations_part)
                     score = cosine_similarity(sentences_embeddings, translations_embeddings)
-                    if score > 0.6:
+                    if score > main_window.threshold_edit.text():
                         translations += translations_part 
                         break
                 else:
@@ -260,6 +284,9 @@ async def communicate_with_api(main_window):
     main_window.data_table.setEditTriggers(QAbstractItemView.AllEditTriggers)
     main_window.data_table.setFocusPolicy(Qt.StrongFocus)
     main_window.data_table.setSelectionMode(QAbstractItemView.ExtendedSelection)
+    movie.stop()
+    main_window.loading_gif.hide()
+    
 
 
         

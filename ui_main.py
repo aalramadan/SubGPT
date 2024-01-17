@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainilDzNi.ui'
+## Form generated from reading UI file 'maintBcXhK.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -18,21 +18,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGridLayout, QHBoxLayout, QHeaderView, QLabel,
     QLineEdit, QMainWindow, QPlainTextEdit, QPushButton,
-    QScrollArea, QSizePolicy, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QScrollArea, QSizePolicy, QStackedWidget, QStatusBar,
+    QTableWidget, QTableWidgetItem, QTextBrowser, QVBoxLayout,
+    QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(988, 732)
+        MainWindow.resize(940, 648)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(940, 560))
+        MainWindow.setMinimumSize(QSize(940, 648))
         MainWindow.setWindowTitle(u"SubGPT")
         icon = QIcon()
         icon.addFile(u":/images/images/images/title_bar_icon.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -235,9 +236,9 @@ class Ui_MainWindow(object):
         self.LeftMenuBar.setFrameShape(QFrame.NoFrame)
         self.LeftMenuBar.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.LeftMenuBar)
-        self.verticalLayout_3.setSpacing(6)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(9, 9, 9, 9)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.MenuFrame = QFrame(self.LeftMenuBar)
         self.MenuFrame.setObjectName(u"MenuFrame")
         self.MenuFrame.setFrameShape(QFrame.NoFrame)
@@ -302,39 +303,29 @@ class Ui_MainWindow(object):
         self.SettingsExpand.setFrameShape(QFrame.NoFrame)
         self.SettingsExpand.setFrameShadow(QFrame.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.SettingsExpand)
-        self.verticalLayout_7.setSpacing(6)
+        self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(-1, -1, -1, 9)
-        self.IconFrame = QFrame(self.SettingsExpand)
-        self.IconFrame.setObjectName(u"IconFrame")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.IconFrame.sizePolicy().hasHeightForWidth())
-        self.IconFrame.setSizePolicy(sizePolicy1)
-        self.IconFrame.setMinimumSize(QSize(0, 150))
-        self.IconFrame.setFrameShape(QFrame.StyledPanel)
-        self.IconFrame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.IconFrame)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-
-        self.verticalLayout_7.addWidget(self.IconFrame)
-
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.TokenFrame = QFrame(self.SettingsExpand)
         self.TokenFrame.setObjectName(u"TokenFrame")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.TokenFrame.sizePolicy().hasHeightForWidth())
         self.TokenFrame.setSizePolicy(sizePolicy1)
-        self.TokenFrame.setMinimumSize(QSize(0, 0))
+        self.TokenFrame.setMinimumSize(QSize(360, 0))
         self.TokenFrame.setMaximumSize(QSize(16777215, 16777215))
         self.TokenFrame.setFrameShape(QFrame.StyledPanel)
         self.TokenFrame.setFrameShadow(QFrame.Raised)
         self.TokenFrame.setLineWidth(1)
         self.verticalLayout_11 = QVBoxLayout(self.TokenFrame)
-        self.verticalLayout_11.setSpacing(6)
+        self.verticalLayout_11.setSpacing(0)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.verticalLayout_11.setContentsMargins(9, 9, 9, 9)
+        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.lbl_token = QLabel(self.TokenFrame)
         self.lbl_token.setObjectName(u"lbl_token")
+        sizePolicy.setHeightForWidth(self.lbl_token.sizePolicy().hasHeightForWidth())
+        self.lbl_token.setSizePolicy(sizePolicy)
         self.lbl_token.setFont(font)
 
         self.verticalLayout_11.addWidget(self.lbl_token)
@@ -344,20 +335,20 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.token_edit.sizePolicy().hasHeightForWidth())
         self.token_edit.setSizePolicy(sizePolicy)
         self.token_edit.setMinimumSize(QSize(0, 0))
+        self.token_edit.setMaximumSize(QSize(16777215, 16777215))
         self.token_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.token_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.verticalLayout_11.addWidget(self.token_edit)
 
-        self.lbl_tokeb_info = QLabel(self.TokenFrame)
-        self.lbl_tokeb_info.setObjectName(u"lbl_tokeb_info")
+        self.api_url_text = QTextBrowser(self.TokenFrame)
+        self.api_url_text.setObjectName(u"api_url_text")
+        sizePolicy.setHeightForWidth(self.api_url_text.sizePolicy().hasHeightForWidth())
+        self.api_url_text.setSizePolicy(sizePolicy)
+        self.api_url_text.setMinimumSize(QSize(0, 0))
+        self.api_url_text.setMaximumSize(QSize(16777215, 60))
 
-        self.verticalLayout_11.addWidget(self.lbl_tokeb_info)
-
-        self.lbl_api_url = QLabel(self.TokenFrame)
-        self.lbl_api_url.setObjectName(u"lbl_api_url")
-
-        self.verticalLayout_11.addWidget(self.lbl_api_url)
+        self.verticalLayout_11.addWidget(self.api_url_text)
 
 
         self.verticalLayout_7.addWidget(self.TokenFrame)
@@ -366,16 +357,19 @@ class Ui_MainWindow(object):
         self.ModelFrame.setObjectName(u"ModelFrame")
         sizePolicy1.setHeightForWidth(self.ModelFrame.sizePolicy().hasHeightForWidth())
         self.ModelFrame.setSizePolicy(sizePolicy1)
+        self.ModelFrame.setMinimumSize(QSize(360, 0))
+        self.ModelFrame.setMaximumSize(QSize(16777215, 100))
         self.ModelFrame.setFrameShape(QFrame.StyledPanel)
         self.ModelFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_10 = QVBoxLayout(self.ModelFrame)
-        self.verticalLayout_10.setSpacing(6)
+        self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalLayout_10.setContentsMargins(9, 9, 9, 9)
+        self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.lbl_model = QLabel(self.ModelFrame)
         self.lbl_model.setObjectName(u"lbl_model")
-        sizePolicy1.setHeightForWidth(self.lbl_model.sizePolicy().hasHeightForWidth())
-        self.lbl_model.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.lbl_model.sizePolicy().hasHeightForWidth())
+        self.lbl_model.setSizePolicy(sizePolicy)
+        self.lbl_model.setMaximumSize(QSize(16777215, 16777215))
 
         self.verticalLayout_10.addWidget(self.lbl_model)
 
@@ -383,9 +377,9 @@ class Ui_MainWindow(object):
         self.combo_model.addItem("")
         self.combo_model.addItem("")
         self.combo_model.setObjectName(u"combo_model")
-        sizePolicy1.setHeightForWidth(self.combo_model.sizePolicy().hasHeightForWidth())
-        self.combo_model.setSizePolicy(sizePolicy1)
-        self.combo_model.setMinimumSize(QSize(0, 40))
+        sizePolicy.setHeightForWidth(self.combo_model.sizePolicy().hasHeightForWidth())
+        self.combo_model.setSizePolicy(sizePolicy)
+        self.combo_model.setMinimumSize(QSize(0, 50))
         self.combo_model.setMaximumSize(QSize(16777215, 16777215))
         self.combo_model.setFont(font)
 
@@ -398,24 +392,57 @@ class Ui_MainWindow(object):
         self.CosineFrame.setObjectName(u"CosineFrame")
         sizePolicy1.setHeightForWidth(self.CosineFrame.sizePolicy().hasHeightForWidth())
         self.CosineFrame.setSizePolicy(sizePolicy1)
+        self.CosineFrame.setMinimumSize(QSize(360, 0))
+        self.CosineFrame.setMaximumSize(QSize(16777215, 16777215))
         self.CosineFrame.setFrameShape(QFrame.StyledPanel)
         self.CosineFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.CosineFrame)
+        self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.box_cosine = QCheckBox(self.CosineFrame)
         self.box_cosine.setObjectName(u"box_cosine")
+        sizePolicy.setHeightForWidth(self.box_cosine.sizePolicy().hasHeightForWidth())
+        self.box_cosine.setSizePolicy(sizePolicy)
+        self.box_cosine.setFont(font)
 
         self.verticalLayout_12.addWidget(self.box_cosine)
 
-        self.label = QLabel(self.CosineFrame)
-        self.label.setObjectName(u"label")
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.lbl_threshold = QLabel(self.CosineFrame)
+        self.lbl_threshold.setObjectName(u"lbl_threshold")
+        self.lbl_threshold.setEnabled(True)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.lbl_threshold.sizePolicy().hasHeightForWidth())
+        self.lbl_threshold.setSizePolicy(sizePolicy2)
 
-        self.verticalLayout_12.addWidget(self.label)
+        self.gridLayout.addWidget(self.lbl_threshold, 1, 0, 1, 1)
 
-        self.label_2 = QLabel(self.CosineFrame)
-        self.label_2.setObjectName(u"label_2")
+        self.threshold_edit = QLineEdit(self.CosineFrame)
+        self.threshold_edit.setObjectName(u"threshold_edit")
+        self.threshold_edit.setEnabled(False)
+        sizePolicy1.setHeightForWidth(self.threshold_edit.sizePolicy().hasHeightForWidth())
+        self.threshold_edit.setSizePolicy(sizePolicy1)
+        self.threshold_edit.setMinimumSize(QSize(0, 50))
+        self.threshold_edit.setAlignment(Qt.AlignCenter)
+        self.threshold_edit.setReadOnly(False)
 
-        self.verticalLayout_12.addWidget(self.label_2)
+        self.gridLayout.addWidget(self.threshold_edit, 1, 1, 1, 1)
+
+
+        self.verticalLayout_12.addLayout(self.gridLayout)
+
+        self.cosine_info = QTextBrowser(self.CosineFrame)
+        self.cosine_info.setObjectName(u"cosine_info")
+        sizePolicy.setHeightForWidth(self.cosine_info.sizePolicy().hasHeightForWidth())
+        self.cosine_info.setSizePolicy(sizePolicy)
+        self.cosine_info.setMinimumSize(QSize(0, 0))
+        self.cosine_info.setMaximumSize(QSize(16777215, 100))
+
+        self.verticalLayout_12.addWidget(self.cosine_info)
 
 
         self.verticalLayout_7.addWidget(self.CosineFrame)
@@ -428,21 +455,44 @@ class Ui_MainWindow(object):
         self.ContentBox.setFrameShape(QFrame.NoFrame)
         self.ContentBox.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.ContentBox)
-        self.verticalLayout_2.setSpacing(6)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 9, 9, 9)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.ContentTop = QFrame(self.ContentBox)
         self.ContentTop.setObjectName(u"ContentTop")
-        self.ContentTop.setMinimumSize(QSize(0, 50))
+        self.ContentTop.setMinimumSize(QSize(0, 60))
         self.ContentTop.setMaximumSize(QSize(16777215, 50))
         self.ContentTop.setFrameShape(QFrame.NoFrame)
         self.ContentTop.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.ContentTop)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.lbl_title = QLabel(self.ContentTop)
         self.lbl_title.setObjectName(u"lbl_title")
+        self.lbl_title.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.lbl_title.setMargin(5)
 
         self.horizontalLayout.addWidget(self.lbl_title)
+
+        self.frame = QFrame(self.ContentTop)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.frame)
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.loading_gif = QLabel(self.frame)
+        self.loading_gif.setObjectName(u"loading_gif")
+        sizePolicy1.setHeightForWidth(self.loading_gif.sizePolicy().hasHeightForWidth())
+        self.loading_gif.setSizePolicy(sizePolicy1)
+        self.loading_gif.setMinimumSize(QSize(50, 50))
+
+        self.horizontalLayout_5.addWidget(self.loading_gif)
+
+
+        self.horizontalLayout.addWidget(self.frame, 0, Qt.AlignRight)
 
 
         self.verticalLayout_2.addWidget(self.ContentTop)
@@ -468,9 +518,9 @@ class Ui_MainWindow(object):
         self.Home = QWidget()
         self.Home.setObjectName(u"Home")
         self.verticalLayout = QVBoxLayout(self.Home)
-        self.verticalLayout.setSpacing(14)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(4, 4, 4, 4)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.GridLayout = QGridLayout()
         self.GridLayout.setSpacing(6)
         self.GridLayout.setObjectName(u"GridLayout")
@@ -539,11 +589,11 @@ class Ui_MainWindow(object):
 
         self.prompt_edit = QPlainTextEdit(self.Home)
         self.prompt_edit.setObjectName(u"prompt_edit")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.prompt_edit.sizePolicy().hasHeightForWidth())
-        self.prompt_edit.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.prompt_edit.sizePolicy().hasHeightForWidth())
+        self.prompt_edit.setSizePolicy(sizePolicy3)
         self.prompt_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.prompt_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.prompt_edit.setLineWrapMode(QPlainTextEdit.NoWrap)
@@ -570,7 +620,9 @@ class Ui_MainWindow(object):
         self.PostProcessing = QWidget()
         self.PostProcessing.setObjectName(u"PostProcessing")
         self.verticalLayout_4 = QVBoxLayout(self.PostProcessing)
+        self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.ScrollArea = QScrollArea(self.PostProcessing)
         self.ScrollArea.setObjectName(u"ScrollArea")
         self.ScrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
@@ -578,9 +630,11 @@ class Ui_MainWindow(object):
         self.ScrollArea.setWidgetResizable(True)
         self.ScrollAreaWidgetContents = QWidget()
         self.ScrollAreaWidgetContents.setObjectName(u"ScrollAreaWidgetContents")
-        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 871, 568))
+        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 844, 519))
         self.verticalLayout_5 = QVBoxLayout(self.ScrollAreaWidgetContents)
+        self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.data_table = QTableWidget(self.ScrollAreaWidgetContents)
         self.data_table.setObjectName(u"data_table")
         sizePolicy.setHeightForWidth(self.data_table.sizePolicy().hasHeightForWidth())
@@ -604,7 +658,9 @@ class Ui_MainWindow(object):
         self.NavBox.setFrameShape(QFrame.StyledPanel)
         self.NavBox.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.NavBox)
+        self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.btn_back = QPushButton(self.NavBox)
         self.btn_back.setObjectName(u"btn_back")
         sizePolicy.setHeightForWidth(self.btn_back.sizePolicy().hasHeightForWidth())
@@ -671,14 +727,52 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.ContentBox)
 
+        self.AboutFrame = QFrame(self.CentralWidget)
+        self.AboutFrame.setObjectName(u"AboutFrame")
+        sizePolicy.setHeightForWidth(self.AboutFrame.sizePolicy().hasHeightForWidth())
+        self.AboutFrame.setSizePolicy(sizePolicy)
+        self.AboutFrame.setMinimumSize(QSize(0, 0))
+        self.AboutFrame.setMaximumSize(QSize(0, 16777215))
+        self.AboutFrame.setFrameShape(QFrame.StyledPanel)
+        self.AboutFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.AboutFrame)
+        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.IconFrame = QFrame(self.AboutFrame)
+        self.IconFrame.setObjectName(u"IconFrame")
+        sizePolicy2.setHeightForWidth(self.IconFrame.sizePolicy().hasHeightForWidth())
+        self.IconFrame.setSizePolicy(sizePolicy2)
+        self.IconFrame.setMinimumSize(QSize(360, 0))
+        self.IconFrame.setMaximumSize(QSize(16777215, 150))
+        self.IconFrame.setFrameShape(QFrame.StyledPanel)
+        self.IconFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_8 = QVBoxLayout(self.IconFrame)
+        self.verticalLayout_8.setSpacing(0)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
+
+        self.verticalLayout_13.addWidget(self.IconFrame)
+
+        self.about_text = QTextBrowser(self.AboutFrame)
+        self.about_text.setObjectName(u"about_text")
+        sizePolicy2.setHeightForWidth(self.about_text.sizePolicy().hasHeightForWidth())
+        self.about_text.setSizePolicy(sizePolicy2)
+        self.about_text.setMinimumSize(QSize(360, 0))
+
+        self.verticalLayout_13.addWidget(self.about_text)
+
+
+        self.horizontalLayout_2.addWidget(self.AboutFrame)
+
         MainWindow.setCentralWidget(self.CentralWidget)
-        self.LeftMenuBar.raise_()
-        self.ContentBox.raise_()
-        self.SettingsExpand.raise_()
+        self.statusBar = QStatusBar(MainWindow)
+        self.statusBar.setObjectName(u"statusBar")
+        MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(0)
+        self.StackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -687,17 +781,37 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         self.btn_settings.setText("")
         self.btn_info.setText("")
-        self.lbl_token.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">API Key:</span></p></body></html>", None))
-        self.lbl_tokeb_info.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a1a1a1;\">You can get the API keys from here:</span></p></body></html>", None))
-        self.lbl_api_url.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><a href=\"https://platform.openai.com/api-keys\"><span style=\" text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body></html>", None))
-        self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">Model:</span></p></body></html>", None))
+        self.lbl_token.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>API Key:</p></body></html>", None))
+        self.api_url_text.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">You can get the API keys from here:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://platform.openai.com/api-keys\"><span style=\" font-size:10pt; text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body>"
+                        "</html>", None))
+        self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Model:</p></body></html>", None))
         self.combo_model.setItemText(0, QCoreApplication.translate("MainWindow", u"GPT4", None))
         self.combo_model.setItemText(1, QCoreApplication.translate("MainWindow", u"GPT3", None))
 
         self.box_cosine.setText(QCoreApplication.translate("MainWindow", u"Cosine Similarty", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:8pt;\">Used to compare input to output embeddings.</span></p></body></html>", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:8pt;\">Could improve accuracy at the expense of more tokens and time.</span></p></body></html>", None))
-        self.lbl_title.setText(QCoreApplication.translate("MainWindow", u"Automated Translation of Subtitle Templates using ChatGPT", None))
+        self.lbl_threshold.setText(QCoreApplication.translate("MainWindow", u"Threshold:", None))
+        self.threshold_edit.setInputMask("")
+        self.threshold_edit.setText(QCoreApplication.translate("MainWindow", u"0.6", None))
+        self.threshold_edit.setPlaceholderText("")
+        self.cosine_info.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Used to compare input to output embeddings.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Could improve accuracy at the expense of more tokens and time.</span></p></body></html>", None))
+        self.lbl_title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:28pt;\">SubGPT</span></p></body></html>", None))
+        self.loading_gif.setText("")
         self.lbl_input.setText(QCoreApplication.translate("MainWindow", u"Subtitle Template", None))
         self.btn_open.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.subtitle_template.setText("")
@@ -718,6 +832,15 @@ class Ui_MainWindow(object):
         self.btn_delete_row.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.btn_start.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.btn_save.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.about_text.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">This tool is part of on-going research that leverages the power of OpenAI's ChatGPT to automate the process of English &lt;--&gt; Arabic subtitling. It uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity.</span><br /><br /><span style=\" font-style:italic;\">Deve"
+                        "lopers &amp; Researchers:<br />Ali Al-Ramadan<br />Hussein Abu-Rayyash</span><br /><br /><br /><br /></p></body></html>", None))
         pass
     # retranslateUi
 

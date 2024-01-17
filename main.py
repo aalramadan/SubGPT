@@ -1,7 +1,8 @@
 from ui_main import Ui_MainWindow
-from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QSizePolicy
-from PySide6.QtGui import QIcon, QPainter, QColor
+from PySide6.QtGui import QIcon, QPainter, QColor, QGuiApplication
+import os
 from sys import exit
 from qasync import QEventLoop
 import ui_functions 
@@ -26,8 +27,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_settings.clicked.connect(lambda: ui_functions.expand_settings(self))
         self.data_table.itemSelectionChanged.connect(lambda: ui_functions.row_selected(self))
         self.btn_delete_row.clicked.connect(lambda: ui_functions.delete_row(self))
-
-    
+        self.btn_info.clicked.connect(lambda: ui_functions.expand_about(self))
+        self.box_cosine.stateChanged.connect(lambda: ui_functions.on_box_cosine_changed(self, self.box_cosine))
 if __name__ == "__main__":
     app = QApplication()
     app.setStyle('Fusion')
