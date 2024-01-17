@@ -1,8 +1,6 @@
 from ui_main import Ui_MainWindow
-from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QSizePolicy
-from PySide6.QtGui import QIcon, QPainter, QColor, QGuiApplication
-import os
+from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtGui import QIcon
 from sys import exit
 from qasync import QEventLoop
 import ui_functions 

@@ -1,8 +1,7 @@
-from PySide6.QtWidgets import (QMessageBox, QFileDialog, QSizePolicy, QGroupBox, QTableWidgetItem,
-                               QHBoxLayout, QFrame, QSizePolicy, QLabel, QVBoxLayout, QHeaderView,
-                               QLineEdit, QPushButton, QWidget, QAbstractItemView)
-from PySide6.QtCore import QDir, QSize, QEasingCurve, QPropertyAnimation, Qt
-from PySide6.QtGui import QIcon, QPainter, QColor, QMovie 
+from PySide6.QtWidgets import (QMessageBox, QFileDialog, QTableWidgetItem,
+                               QHeaderView,QAbstractItemView)
+from PySide6.QtCore import QSize, QEasingCurve, QPropertyAnimation, Qt
+from PySide6.QtGui import QIcon, QMovie 
 from srt import parse, SRTParseError, compose
 from openai import AsyncOpenAI, APIConnectionError, AuthenticationError, embeddings
 from qasync import asyncSlot
@@ -252,7 +251,7 @@ async def communicate_with_api(main_window):
                 if (main_window.box_cosine.isChecked()):
                     translations_embeddings = await get_embeddings(client, translations_part)
                     score = cosine_similarity(sentences_embeddings, translations_embeddings)
-                    if score > main_window.threshold_edit.text():
+                    if score > float(main_window.threshold_edit.text()):
                         translations += translations_part 
                         break
                 else:
