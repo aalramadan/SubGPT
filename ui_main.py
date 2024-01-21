@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainSoHgVu.ui'
+## Form generated from reading UI file 'maindOTMRB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -27,13 +27,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(940, 648)
+        MainWindow.resize(1157, 684)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(940, 648))
+        MainWindow.setMinimumSize(QSize(940, 650))
         MainWindow.setWindowTitle(u"SubGPT")
         icon = QIcon()
         icon.addFile(u":/images/images/images/title_bar_icon.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -138,11 +138,12 @@ class Ui_MainWindow(object):
 " }\n"
 " QScrollBar::handle:vertical {	\n"
 "	background-color: rgb(153, 204, 255);\n"
+"	min-height: 40px;\n"
 " }\n"
 " QScrollBar::add-line:vertical {\n"
-"    background: rgb(55, 63, 77);\n"
-"    hei"
-                        "ght: 10px;\n"
+"    background: rgb(5"
+                        "5, 63, 77);\n"
+"    height: 10px;\n"
 "	border-bottom-left-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
 "    subcontrol-position: bottom;\n"
@@ -168,6 +169,7 @@ class Ui_MainWindow(object):
 "}\n"
 "QScrollBar::handle:horizontal {\n"
 "    background: rgb(153, 204, 255);\n"
+"	min-width: 40px;\n"
 "}\n"
 "QScrollBar::add-line:horizontal {\n"
 "    border: none;\n"
@@ -177,9 +179,9 @@ class Ui_MainWindow(object):
 "    border-bottom-right-radius: 4px;\n"
 "    subcontrol-position: right;\n"
 "}\n"
-"QScrollBar::sub-line:horizontal {\n"
-"   "
-                        " border: none;\n"
+""
+                        "QScrollBar::sub-line:horizontal {\n"
+"    border: none;\n"
 "    background: rgb(55, 63, 77);\n"
 "    width: 10px;\n"
 "	border-top-left-radius: 4px;\n"
@@ -207,8 +209,8 @@ class Ui_MainWindow(object):
 "	border: 3px solid rgb(52, 59, 72);	\n"
 "	background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
 "}\n"
-"/* ///////////////////////////////////////////////////////////////////////////////////"
-                        "////////////// */\n"
+"/* //////////////////////////////////////////"
+                        "/////////////////////////////////////////////////////// */\n"
 "QFrame#IconFrame {\n"
 "	border-image: url(:/images/images/images/icon.png) 0 0 0 0 stretch stretch;\n"
 "}\n"
@@ -303,7 +305,7 @@ class Ui_MainWindow(object):
         self.SettingsExpand.setFrameShape(QFrame.NoFrame)
         self.SettingsExpand.setFrameShadow(QFrame.Raised)
         self.verticalLayout_7 = QVBoxLayout(self.SettingsExpand)
-        self.verticalLayout_7.setSpacing(0)
+        self.verticalLayout_7.setSpacing(6)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.TokenFrame = QFrame(self.SettingsExpand)
@@ -314,12 +316,12 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.TokenFrame.sizePolicy().hasHeightForWidth())
         self.TokenFrame.setSizePolicy(sizePolicy1)
         self.TokenFrame.setMinimumSize(QSize(360, 0))
-        self.TokenFrame.setMaximumSize(QSize(16777215, 16777215))
+        self.TokenFrame.setMaximumSize(QSize(16777215, 360))
         self.TokenFrame.setFrameShape(QFrame.StyledPanel)
         self.TokenFrame.setFrameShadow(QFrame.Raised)
         self.TokenFrame.setLineWidth(1)
         self.verticalLayout_11 = QVBoxLayout(self.TokenFrame)
-        self.verticalLayout_11.setSpacing(0)
+        self.verticalLayout_11.setSpacing(6)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
         self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.lbl_token = QLabel(self.TokenFrame)
@@ -332,10 +334,13 @@ class Ui_MainWindow(object):
 
         self.token_edit = QPlainTextEdit(self.TokenFrame)
         self.token_edit.setObjectName(u"token_edit")
-        sizePolicy.setHeightForWidth(self.token_edit.sizePolicy().hasHeightForWidth())
-        self.token_edit.setSizePolicy(sizePolicy)
-        self.token_edit.setMinimumSize(QSize(0, 0))
-        self.token_edit.setMaximumSize(QSize(16777215, 16777215))
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.token_edit.sizePolicy().hasHeightForWidth())
+        self.token_edit.setSizePolicy(sizePolicy2)
+        self.token_edit.setMinimumSize(QSize(0, 100))
+        self.token_edit.setMaximumSize(QSize(16777215, 100))
         self.token_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.token_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
@@ -343,12 +348,47 @@ class Ui_MainWindow(object):
 
         self.api_url_text = QTextBrowser(self.TokenFrame)
         self.api_url_text.setObjectName(u"api_url_text")
-        sizePolicy.setHeightForWidth(self.api_url_text.sizePolicy().hasHeightForWidth())
-        self.api_url_text.setSizePolicy(sizePolicy)
-        self.api_url_text.setMinimumSize(QSize(0, 0))
+        sizePolicy2.setHeightForWidth(self.api_url_text.sizePolicy().hasHeightForWidth())
+        self.api_url_text.setSizePolicy(sizePolicy2)
+        self.api_url_text.setMinimumSize(QSize(0, 50))
         self.api_url_text.setMaximumSize(QSize(16777215, 60))
 
         self.verticalLayout_11.addWidget(self.api_url_text)
+
+        self.gridLayout_2 = QGridLayout()
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.max_tokens = QLineEdit(self.TokenFrame)
+        self.max_tokens.setObjectName(u"max_tokens")
+        sizePolicy2.setHeightForWidth(self.max_tokens.sizePolicy().hasHeightForWidth())
+        self.max_tokens.setSizePolicy(sizePolicy2)
+        self.max_tokens.setMinimumSize(QSize(0, 50))
+
+        self.gridLayout_2.addWidget(self.max_tokens, 1, 1, 1, 1)
+
+        self.lbl_max_tokens = QLabel(self.TokenFrame)
+        self.lbl_max_tokens.setObjectName(u"lbl_max_tokens")
+        sizePolicy.setHeightForWidth(self.lbl_max_tokens.sizePolicy().hasHeightForWidth())
+        self.lbl_max_tokens.setSizePolicy(sizePolicy)
+
+        self.gridLayout_2.addWidget(self.lbl_max_tokens, 1, 0, 1, 1)
+
+
+        self.verticalLayout_11.addLayout(self.gridLayout_2)
+
+        self.alignment_box = QCheckBox(self.TokenFrame)
+        self.alignment_box.setObjectName(u"alignment_box")
+        sizePolicy.setHeightForWidth(self.alignment_box.sizePolicy().hasHeightForWidth())
+        self.alignment_box.setSizePolicy(sizePolicy)
+
+        self.verticalLayout_11.addWidget(self.alignment_box)
+
+        self.alignment_fix_info = QTextBrowser(self.TokenFrame)
+        self.alignment_fix_info.setObjectName(u"alignment_fix_info")
+        sizePolicy2.setHeightForWidth(self.alignment_fix_info.sizePolicy().hasHeightForWidth())
+        self.alignment_fix_info.setSizePolicy(sizePolicy2)
+        self.alignment_fix_info.setMinimumSize(QSize(0, 10))
+
+        self.verticalLayout_11.addWidget(self.alignment_fix_info)
 
 
         self.verticalLayout_7.addWidget(self.TokenFrame)
@@ -362,7 +402,7 @@ class Ui_MainWindow(object):
         self.ModelFrame.setFrameShape(QFrame.StyledPanel)
         self.ModelFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_10 = QVBoxLayout(self.ModelFrame)
-        self.verticalLayout_10.setSpacing(0)
+        self.verticalLayout_10.setSpacing(6)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.lbl_model = QLabel(self.ModelFrame)
@@ -393,11 +433,11 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.CosineFrame.sizePolicy().hasHeightForWidth())
         self.CosineFrame.setSizePolicy(sizePolicy1)
         self.CosineFrame.setMinimumSize(QSize(360, 0))
-        self.CosineFrame.setMaximumSize(QSize(16777215, 16777215))
+        self.CosineFrame.setMaximumSize(QSize(16777215, 150))
         self.CosineFrame.setFrameShape(QFrame.StyledPanel)
         self.CosineFrame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.CosineFrame)
-        self.verticalLayout_12.setSpacing(0)
+        self.verticalLayout_12.setSpacing(6)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.box_cosine = QCheckBox(self.CosineFrame)
@@ -413,19 +453,16 @@ class Ui_MainWindow(object):
         self.lbl_threshold = QLabel(self.CosineFrame)
         self.lbl_threshold.setObjectName(u"lbl_threshold")
         self.lbl_threshold.setEnabled(True)
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.lbl_threshold.sizePolicy().hasHeightForWidth())
-        self.lbl_threshold.setSizePolicy(sizePolicy2)
+        sizePolicy.setHeightForWidth(self.lbl_threshold.sizePolicy().hasHeightForWidth())
+        self.lbl_threshold.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.lbl_threshold, 1, 0, 1, 1)
 
         self.threshold_edit = QLineEdit(self.CosineFrame)
         self.threshold_edit.setObjectName(u"threshold_edit")
         self.threshold_edit.setEnabled(False)
-        sizePolicy1.setHeightForWidth(self.threshold_edit.sizePolicy().hasHeightForWidth())
-        self.threshold_edit.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.threshold_edit.sizePolicy().hasHeightForWidth())
+        self.threshold_edit.setSizePolicy(sizePolicy2)
         self.threshold_edit.setMinimumSize(QSize(0, 50))
         self.threshold_edit.setAlignment(Qt.AlignCenter)
         self.threshold_edit.setReadOnly(False)
@@ -515,6 +552,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.StackedWidget = QStackedWidget(self.PagesContainer)
         self.StackedWidget.setObjectName(u"StackedWidget")
+        self.StackedWidget.setMinimumSize(QSize(0, 0))
         self.Home = QWidget()
         self.Home.setObjectName(u"Home")
         self.verticalLayout = QVBoxLayout(self.Home)
@@ -562,18 +600,16 @@ class Ui_MainWindow(object):
         self.GridLayout2.setSpacing(6)
         self.GridLayout2.setObjectName(u"GridLayout2")
         self.GridLayout2.setContentsMargins(9, 9, 9, 9)
+        self.target_language = QLineEdit(self.Home)
+        self.target_language.setObjectName(u"target_language")
+        self.target_language.setMinimumSize(QSize(0, 30))
+
+        self.GridLayout2.addWidget(self.target_language, 1, 0, 1, 1)
+
         self.lbl_language = QLabel(self.Home)
         self.lbl_language.setObjectName(u"lbl_language")
 
         self.GridLayout2.addWidget(self.lbl_language, 0, 0, 1, 1)
-
-        self.combo_lang = QComboBox(self.Home)
-        self.combo_lang.addItem("")
-        self.combo_lang.addItem("")
-        self.combo_lang.setObjectName(u"combo_lang")
-        self.combo_lang.setMinimumSize(QSize(0, 30))
-
-        self.GridLayout2.addWidget(self.combo_lang, 1, 0, 1, 1)
 
 
         self.verticalLayout.addLayout(self.GridLayout2)
@@ -630,7 +666,7 @@ class Ui_MainWindow(object):
         self.ScrollArea.setWidgetResizable(True)
         self.ScrollAreaWidgetContents = QWidget()
         self.ScrollAreaWidgetContents.setObjectName(u"ScrollAreaWidgetContents")
-        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 844, 519))
+        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1061, 555))
         self.verticalLayout_5 = QVBoxLayout(self.ScrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -741,8 +777,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.IconFrame = QFrame(self.AboutFrame)
         self.IconFrame.setObjectName(u"IconFrame")
-        sizePolicy2.setHeightForWidth(self.IconFrame.sizePolicy().hasHeightForWidth())
-        self.IconFrame.setSizePolicy(sizePolicy2)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.IconFrame.sizePolicy().hasHeightForWidth())
+        self.IconFrame.setSizePolicy(sizePolicy4)
         self.IconFrame.setMinimumSize(QSize(360, 0))
         self.IconFrame.setMaximumSize(QSize(16777215, 150))
         self.IconFrame.setFrameShape(QFrame.StyledPanel)
@@ -756,8 +795,8 @@ class Ui_MainWindow(object):
 
         self.about_text = QTextBrowser(self.AboutFrame)
         self.about_text.setObjectName(u"about_text")
-        sizePolicy2.setHeightForWidth(self.about_text.sizePolicy().hasHeightForWidth())
-        self.about_text.setSizePolicy(sizePolicy2)
+        sizePolicy4.setHeightForWidth(self.about_text.sizePolicy().hasHeightForWidth())
+        self.about_text.setSizePolicy(sizePolicy4)
         self.about_text.setMinimumSize(QSize(360, 0))
 
         self.verticalLayout_13.addWidget(self.about_text)
@@ -792,6 +831,17 @@ class Ui_MainWindow(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">You can get the API keys from here:</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://platform.openai.com/api-keys\"><span style=\" font-size:10pt; text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body>"
                         "</html>", None))
+        self.max_tokens.setText(QCoreApplication.translate("MainWindow", u"300", None))
+        self.lbl_max_tokens.setText(QCoreApplication.translate("MainWindow", u"Input Tokens", None))
+        self.alignment_box.setText(QCoreApplication.translate("MainWindow", u"Fix Alignment", None))
+        self.alignment_fix_info.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Higher tokens could lead to high translation accuracy, but may lead to incorrect alightments between the input and output. This option can fix the problem at the expense of using more tokens and time.</span></p></body></html>", None))
         self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Model:</p></body></html>", None))
         self.combo_model.setItemText(0, QCoreApplication.translate("MainWindow", u"GPT4", None))
         self.combo_model.setItemText(1, QCoreApplication.translate("MainWindow", u"GPT3", None))
@@ -816,10 +866,8 @@ class Ui_MainWindow(object):
         self.btn_open.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.subtitle_template.setText("")
         self.subtitle_template.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Click Open to choose a file", None))
+        self.target_language.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Arabic, English, Spanish ... etc", None))
         self.lbl_language.setText(QCoreApplication.translate("MainWindow", u"Target Language", None))
-        self.combo_lang.setItemText(0, QCoreApplication.translate("MainWindow", u"Arabic", None))
-        self.combo_lang.setItemText(1, QCoreApplication.translate("MainWindow", u"English", None))
-
         self.lbl_prompt.setText(QCoreApplication.translate("MainWindow", u"Edit Prompt", None))
         self.prompt_edit.setPlainText(QCoreApplication.translate("MainWindow", u"As an expert subtitle translator, your task is to translate the provided subtitles.\n"
 "Please adhere to the following guidelines:\n"
@@ -839,8 +887,11 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">This tool is part of on-going research that leverages the power of OpenAI's ChatGPT to automate the process of English &lt;--&gt; Arabic subtitling. It uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity.</span><br /><br /><span style=\" font-style:italic;\">Deve"
-                        "lopers &amp; Researchers:<br />Ali Al-Ramadan<br />Hussein Abu-Rayyash</span><br /><br /><br /><br /></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">SubGPT uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; marg"
+                        "in-right:0px; -qt-block-indent:0; text-indent:0px;\">Ali Al-Ramadan - Developer </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Hussein Abu-Rayyash - Researcher</p></body></html>", None))
         pass
     # retranslateUi
 

@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>940</width>
-    <height>648</height>
+    <width>1157</width>
+    <height>684</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
   <property name="minimumSize">
    <size>
     <width>940</width>
-    <height>648</height>
+    <height>650</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -134,6 +134,7 @@ QPlainTextEdit:focus {
  }
  QScrollBar::handle:vertical {	
 	background-color: rgb(153, 204, 255);
+	min-height: 40px;
  }
  QScrollBar::add-line:vertical {
     background: rgb(55, 63, 77);
@@ -163,6 +164,7 @@ QScrollBar:horizontal {
 }
 QScrollBar::handle:horizontal {
     background: rgb(153, 204, 255);
+	min-width: 40px;
 }
 QScrollBar::add-line:horizontal {
     border: none;
@@ -431,7 +433,7 @@ QPlainTextEdit#prompt_edit {
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <property name="spacing">
-        <number>0</number>
+        <number>6</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -462,7 +464,7 @@ QPlainTextEdit#prompt_edit {
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>16777215</height>
+           <height>360</height>
           </size>
          </property>
          <property name="frameShape">
@@ -476,7 +478,7 @@ QPlainTextEdit#prompt_edit {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -514,7 +516,7 @@ QPlainTextEdit#prompt_edit {
           <item>
            <widget class="QPlainTextEdit" name="token_edit">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -522,13 +524,13 @@ QPlainTextEdit#prompt_edit {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>0</height>
+              <height>100</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>16777215</height>
+              <height>100</height>
              </size>
             </property>
             <property name="verticalScrollBarPolicy">
@@ -542,7 +544,7 @@ QPlainTextEdit#prompt_edit {
           <item>
            <widget class="QTextBrowser" name="api_url_text">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -550,7 +552,7 @@ QPlainTextEdit#prompt_edit {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>0</height>
+              <height>50</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -569,6 +571,81 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;You can get the API keys from here:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://platform.openai.com/api-keys&quot;&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline; color:#739ef7;&quot;&gt;https://platform.openai.com/api-keys&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="max_tokens">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>300</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="lbl_max_tokens">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Input Tokens</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="alignment_box">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Fix Alignment</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextBrowser" name="alignment_fix_info">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>10</height>
+             </size>
+            </property>
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;Higher tokens could lead to high translation accuracy, but may lead to incorrect alightments between the input and output. This option can fix the problem at the expense of using more tokens and time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -603,7 +680,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -696,7 +773,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>16777215</height>
+           <height>150</height>
           </size>
          </property>
          <property name="frameShape">
@@ -707,7 +784,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_12">
           <property name="spacing">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -750,7 +827,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <bool>true</bool>
               </property>
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -766,7 +843,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <bool>false</bool>
               </property>
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -1007,6 +1084,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <item>
               <widget class="QStackedWidget" name="StackedWidget">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="currentIndex">
                 <number>1</number>
                </property>
@@ -1141,31 +1224,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="spacing">
                     <number>6</number>
                    </property>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="lbl_language">
-                     <property name="text">
-                      <string>Target Language</string>
-                     </property>
-                    </widget>
-                   </item>
                    <item row="1" column="0">
-                    <widget class="QComboBox" name="combo_lang">
+                    <widget class="QLineEdit" name="target_language">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
                        <height>30</height>
                       </size>
                      </property>
-                     <item>
-                      <property name="text">
-                       <string>Arabic</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>English</string>
-                      </property>
-                     </item>
+                     <property name="placeholderText">
+                      <string>Arabic, English, Spanish ... etc</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lbl_language">
+                     <property name="text">
+                      <string>Target Language</string>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -1290,8 +1366,8 @@ Remember, your role is solely translation. No additional responses are required.
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>844</width>
-                      <height>519</height>
+                      <width>1061</width>
+                      <height>555</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1622,7 +1698,10 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;This tool is part of on-going research that leverages the power of OpenAI's ChatGPT to automate the process of English &amp;lt;--&amp;gt; Arabic subtitling. It uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity.&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Developers &amp;amp; Researchers:&lt;br /&gt;Ali Al-Ramadan&lt;br /&gt;Hussein Abu-Rayyash&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;SubGPT uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ali Al-Ramadan - Developer &lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hussein Abu-Rayyash - Researcher&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
