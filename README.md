@@ -1,8 +1,5 @@
-# **SubGPT 1.0**
+# **SubGPT v1.0.0**
 <img width="943" alt="image" src="https://github.com/aalramadan/SubGPT/assets/55710790/81404e39-a31a-4b3f-b40e-0cf52e03851e">
-
-
-
 
 ## **What does it do?**
 **SubGPT** provides translations for *multiple* languages using ChatGPT. 
