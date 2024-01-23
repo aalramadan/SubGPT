@@ -1,4 +1,8 @@
-# 🛠 **SubGPT 1.0**
+# **SubGPT 1.0**
+<img width="943" alt="image" src="https://github.com/aalramadan/SubGPT/assets/55710790/81404e39-a31a-4b3f-b40e-0cf52e03851e">
+
+
+
 
 ## **What does it do?**
 **SubGPT** provides translations for *multiple* languages using ChatGPT. 
@@ -26,6 +30,7 @@
 
 
 ## **Demo**
+![Animation](https://github.com/aalramadan/SubGPT/assets/55710790/529fc1c0-91a8-47f8-bee5-664a17b675ba)
 
 
 ## **Contribution**
