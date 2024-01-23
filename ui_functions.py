@@ -14,6 +14,7 @@ import re
 template_file = None # Stores the loaded .srt file
 template_loaded = False # Checked if template is loaded. Needed so that "Next" button doesn't keep loading the same file.
 async_signal_used = False # Needed for the Start/Pause button
+waiting_loop = True
 
 class Settings:
     EXPAND_WIDTH = 360
@@ -89,9 +90,9 @@ def load_template_file(main_window):
 
 def check_inputs(main_window):
     global template_loaded      
-    if not main_window.target_language.text():
+    if not main_window.subtitle_template.text() :
         issue_warning_error(main_window, "Warning", "Specify a template file")    
-    elif not main_window.subtitle_template.text():
+    elif not main_window.target_language.text():
         issue_warning_error(main_window, "Warning", "Specify a target language")
     else:
         main_window.StackedWidget.setCurrentWidget(main_window.PostProcessing)
@@ -144,6 +145,12 @@ def delete_row(main_window):
         main_window.data_table.setItem(item.row(), item.column(), None)
     shift_items_up(main_window)
 
+    for row in reversed(range(main_window.data_table.rowCount())):
+        if all(main_window.data_table.item(row, col) is None 
+               for col in range(main_window.data_table.columnCount())):
+            main_window.data_table.removeRow(row)
+
+
 def save_template_file(main_window):
     global template_file
     options = QFileDialog.Options()
@@ -160,13 +167,6 @@ def save_template_file(main_window):
         
         QMessageBox.information(main_window, "File Saved", "File was written successfully!")
 
-@asyncSlot() 
-async def get_embeddings(client, text):
-    embeddings_response = await client.embeddings.create(
-        model='text-embedding-ada-002',
-        input=text
-    )
-    return np.array(embeddings_response.data[0].embedding)
 
 
 def cosine_similarity(sentences_embeddings, translations_embeddings):
@@ -182,7 +182,7 @@ def cosine_similarity(sentences_embeddings, translations_embeddings):
     return similarity
 
 
-def create_sentences_dictionaries(prompt, max_tokens, target_lang):
+def create_sentences_dictionaries(prompt, max_tokens):
     enc = tiktoken.get_encoding("cl100k_base")
     prompt_tokens = enc.encode(prompt)
     current_tokens = len(prompt_tokens)
@@ -235,14 +235,24 @@ def enable_some_buttons(main_window):
     main_window.data_table.setFocusPolicy(Qt.StrongFocus)
     main_window.data_table.setSelectionMode(QAbstractItemView.ExtendedSelection)
 
-    
+
+@asyncSlot() 
+async def get_embeddings(client, text):
+    embeddings_response = await client.embeddings.create(
+        model='text-embedding-ada-002',
+        input=text
+    )
+    return np.array(embeddings_response.data[0].embedding)
+
+
 @asyncSlot()
 async def communicate_with_api(main_window):
     global async_signal_used
-    if not async_signal_used and main_window.btn_start.isChecked():
+    global waiting_loop
+    if main_window.btn_start.isChecked() and not async_signal_used:
         async_signal_used = True
         disable_some_buttons(main_window)
-         
+            
         width = main_window.SettingsExpand.width()
         if width == Settings.EXPAND_WIDTH:
             expand_settings(main_window)
@@ -253,7 +263,7 @@ async def communicate_with_api(main_window):
         main_window.loading_gif.show()
         movie.start()
 
-        client = AsyncOpenAI(api_key = main_window.token_edit.toPlainText()) 
+        client = AsyncOpenAI(api_key = main_window.token_edit.text()) 
 
         target_lang = main_window.target_language.text()
 
@@ -263,7 +273,7 @@ async def communicate_with_api(main_window):
         This input is a JSON string. Please keep it as is and only replace the values with the translations.
         """
         max_tokens = int(main_window.max_tokens.text())
-        sentences_list = create_sentences_dictionaries(prompt, max_tokens, target_lang)
+        sentences_list = create_sentences_dictionaries(prompt, max_tokens)
 
         model = main_window.combo_model.currentText()
 
@@ -277,7 +287,8 @@ async def communicate_with_api(main_window):
             json_string = json.dumps(outer_value)                    
             try:   
                 if main_window.box_cosine.isChecked():
-                    sentences_embeddings = await get_embeddings(client, json_string) 
+                    sentences_string = ' '.join(outer_value.values())
+                    sentences_embeddings = await get_embeddings(client, str(sentences_string)) 
                 while True:       
                     response =  await client.chat.completions.create (
                         model=model,
@@ -289,21 +300,22 @@ async def communicate_with_api(main_window):
                     dict_sentences = response.choices[0].message.content
 
                     try:
-                        values = list(json.loads(dict_sentences).values())
+                        translations_sentences = list(json.loads(dict_sentences).values())
                     except:
-                        values = re.findall(r'": "(.*?)(?="[,}])', dict_sentences)
+                        translations_sentences = re.findall(r'": "(.*?)(?="[,}])', dict_sentences)
                 
                     if main_window.alignment_box.isChecked():
-                        if len(values) != len(outer_value.values()):
+                        if len(translations_sentences) != len(outer_value.values()):
                             continue
                 
-                    if (main_window.box_cosine.isChecked()):
-                        translations_embeddings = await get_embeddings(client, dict_sentences)
+                    if main_window.box_cosine.isChecked():
+                        translations_string = ' '.join(translations_sentences)
+                        translations_embeddings = await get_embeddings(client, translations_string)
                         score = cosine_similarity(sentences_embeddings, translations_embeddings)
                         if score < float(main_window.threshold_edit.text()):
                             continue
                 
-                    for _, sentence in enumerate(values):
+                    for _, sentence in enumerate(translations_sentences):
                         if target_lang == "Arabic":
                             sentence = "\u202b" + sentence + "\u202c"
 
@@ -319,37 +331,36 @@ async def communicate_with_api(main_window):
                     main_window.btn_back.setEnabled(False)
                     movie.stop()
                     main_window.loading_gif.hide()
-                    main_window.btn_start.setEnabled(True)
-                    while not main_window.btn_start.isChecked():
+                    waiting_loop = True
+                    main_window.btn_start.setCheckable(True)
+                    while waiting_loop:
                         await sleep(1)
+                    main_window.btn_start.setCheckable(True)
+                    main_window.btn_start.setChecked(True)   
                     disable_some_buttons(main_window)
                     main_window.loading_gif.setMovie(movie) 
                     main_window.loading_gif.show()
                     movie.start()         
             except AuthenticationError:
                 issue_warning_error(main_window, "Invalid API Key", "Please provide a valid API key")
-                enable_some_buttons(main_window)
-                movie.stop()
-                main_window.loading_gif.hide()
-                return
+                break
             except APIConnectionError:
                 issue_warning_error(main_window, "No API Key Provide", "Please provide an API key")
-                enable_some_buttons(main_window)
-                movie.stop()
-                main_window.loading_gif.hide()
-                return
+                break
             except Exception as e:
                 issue_warning_error(main_window, "Error",f"Something happened: {e}")
-                enable_some_buttons(main_window)
-                movie.stop()
-                main_window.loading_gif.hide()
-                return
-                
+                break
+            
         enable_some_buttons(main_window)
-        async_signal_used = True
+        async_signal_used = False
+        main_window.btn_start.setChecked(False)
+        main_window.btn_start.setCheckable(True)
         movie.stop() 
         main_window.loading_gif.hide()
     else:
-        pass
+        if main_window.btn_start.isChecked() == False:
+            main_window.btn_start.setCheckable(False)
+        else:
+            waiting_loop = False
 
         

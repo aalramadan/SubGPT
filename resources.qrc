@@ -259,7 +259,7 @@
     <file>images/icons/icon_settings.png</file>
   </qresource>
   <qresource prefix="images">
-    <file>images/images/icon.png</file>
+    <file>images/images/title_bar_icon_original.png</file>
     <file>images/images/title_bar_icon.png</file>
   </qresource>
   <qresource prefix="gifs">

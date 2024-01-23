@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maindOTMRB.ui'
+## Form generated from reading UI file 'mainmelrDh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.6.1
 ##
@@ -27,13 +27,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1157, 684)
+        MainWindow.resize(1157, 650)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QSize(940, 650))
+        MainWindow.setMinimumSize(QSize(1150, 650))
         MainWindow.setWindowTitle(u"SubGPT")
         icon = QIcon()
         icon.addFile(u":/images/images/images/title_bar_icon.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -212,7 +212,7 @@ class Ui_MainWindow(object):
 "/* //////////////////////////////////////////"
                         "/////////////////////////////////////////////////////// */\n"
 "QFrame#IconFrame {\n"
-"	border-image: url(:/images/images/images/icon.png) 0 0 0 0 stretch stretch;\n"
+"	border-image: url(:/images/images/images/title_bar_icon_original.png) 0 0 0 0 stretch stretch;\n"
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QWidget#CentralWidget {	\n"
@@ -332,17 +332,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.lbl_token)
 
-        self.token_edit = QPlainTextEdit(self.TokenFrame)
+        self.token_edit = QLineEdit(self.TokenFrame)
         self.token_edit.setObjectName(u"token_edit")
         sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.token_edit.sizePolicy().hasHeightForWidth())
         self.token_edit.setSizePolicy(sizePolicy2)
-        self.token_edit.setMinimumSize(QSize(0, 100))
+        self.token_edit.setMinimumSize(QSize(0, 50))
         self.token_edit.setMaximumSize(QSize(16777215, 100))
-        self.token_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.token_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.token_edit.setInputMethodHints(Qt.ImhHiddenText|Qt.ImhNoAutoUppercase|Qt.ImhNoPredictiveText|Qt.ImhSensitiveData)
+        self.token_edit.setEchoMode(QLineEdit.Password)
+        self.token_edit.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.verticalLayout_11.addWidget(self.token_edit)
 
@@ -386,7 +387,8 @@ class Ui_MainWindow(object):
         self.alignment_fix_info.setObjectName(u"alignment_fix_info")
         sizePolicy2.setHeightForWidth(self.alignment_fix_info.sizePolicy().hasHeightForWidth())
         self.alignment_fix_info.setSizePolicy(sizePolicy2)
-        self.alignment_fix_info.setMinimumSize(QSize(0, 10))
+        self.alignment_fix_info.setMinimumSize(QSize(0, 0))
+        self.alignment_fix_info.setMaximumSize(QSize(16777215, 70))
 
         self.verticalLayout_11.addWidget(self.alignment_fix_info)
 
@@ -666,7 +668,7 @@ class Ui_MainWindow(object):
         self.ScrollArea.setWidgetResizable(True)
         self.ScrollAreaWidgetContents = QWidget()
         self.ScrollAreaWidgetContents.setObjectName(u"ScrollAreaWidgetContents")
-        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1061, 555))
+        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 701, 521))
         self.verticalLayout_5 = QVBoxLayout(self.ScrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -775,26 +777,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setSpacing(0)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
-        self.IconFrame = QFrame(self.AboutFrame)
-        self.IconFrame.setObjectName(u"IconFrame")
+        self.about_text = QTextBrowser(self.AboutFrame)
+        self.about_text.setObjectName(u"about_text")
         sizePolicy4 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.IconFrame.sizePolicy().hasHeightForWidth())
-        self.IconFrame.setSizePolicy(sizePolicy4)
-        self.IconFrame.setMinimumSize(QSize(360, 0))
-        self.IconFrame.setMaximumSize(QSize(16777215, 150))
-        self.IconFrame.setFrameShape(QFrame.StyledPanel)
-        self.IconFrame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.IconFrame)
-        self.verticalLayout_8.setSpacing(0)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-
-        self.verticalLayout_13.addWidget(self.IconFrame)
-
-        self.about_text = QTextBrowser(self.AboutFrame)
-        self.about_text.setObjectName(u"about_text")
         sizePolicy4.setHeightForWidth(self.about_text.sizePolicy().hasHeightForWidth())
         self.about_text.setSizePolicy(sizePolicy4)
         self.about_text.setMinimumSize(QSize(360, 0))
@@ -811,7 +798,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(1)
+        self.StackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -841,7 +828,7 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Higher tokens could lead to high translation accuracy, but may lead to incorrect alightments between the input and output. This option can fix the problem at the expense of using more tokens and time.</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">More tokens can improve translation but may misalign input and output. This option corrects alignment, but uses more tokens and time.</span></p></body></html>", None))
         self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Model:</p></body></html>", None))
         self.combo_model.setItemText(0, QCoreApplication.translate("MainWindow", u"GPT4", None))
         self.combo_model.setItemText(1, QCoreApplication.translate("MainWindow", u"GPT3", None))
@@ -858,8 +845,7 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Used to compare input to output embeddings.</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Could improve accuracy at the expense of more tokens and time.</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">(Experimental) Compares input-output embeddings, potentially enhancing accuracy but requiring more tokens and time.</span></p></body></html>", None))
         self.lbl_title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:28pt;\">SubGPT</span></p></body></html>", None))
         self.loading_gif.setText("")
         self.lbl_input.setText(QCoreApplication.translate("MainWindow", u"Subtitle Template", None))
@@ -887,11 +873,14 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">SubGPT uses Source Language Subtitle Template (SRT) files to provide translations that are not only accurate but also culturally attunedated using Cosine similarity </p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt;\">SubGPT</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">V1.0</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; marg"
-                        "in-right:0px; -qt-block-indent:0; text-indent:0px;\">Ali Al-Ramadan - Developer </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Hussein Abu-Rayyash - Researcher</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin"
+                        "-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Provides translations for multiple languages using ChatGPT.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Ali Al-Ramadan - Developer </span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Hussein Abu-Rayyash - Researcher</span></p></body></html>", None))
         pass
     # retranslateUi
 

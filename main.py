@@ -21,7 +21,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_save.clicked.connect(lambda: ui_functions.save_template_file(self))
         
         self.btn_next.clicked.connect(lambda: ui_functions.check_inputs(self))
+        
         self.btn_start.clicked.connect(lambda: ui_functions.communicate_with_api(self))    
+
         self.btn_back.clicked.connect(lambda: ui_functions.button_click(self, self.btn_back))    
         self.btn_settings.clicked.connect(lambda: ui_functions.expand_settings(self))
         self.data_table.itemSelectionChanged.connect(lambda: ui_functions.items_selected(self))
