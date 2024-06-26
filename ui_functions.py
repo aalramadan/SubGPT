@@ -14,9 +14,10 @@ import re
 template_file = None # Stores the loaded .srt file
 template_loaded = False # Checked if template is loaded. Needed so that "Next" button doesn't keep loading the same file.
 async_signal_used = False # Needed for the Start/Pause button
+disable_delete = False # Used to disable deletetion while model is running
 waiting_loop = True
 
-class Settings:
+class SETTINGS:
     EXPAND_WIDTH = 360
     TIME_ANIMATION = 500
 
@@ -25,6 +26,14 @@ class Settings:
     background-color: rgb(40, 44, 52);
     background-position: left center;
     """
+    MODEL_MAP = {
+    "GPT 4o": "gpt-4o",
+    "GPT 4 Turbo": "gpt-4-turbo",
+    "GPT 4": "gpt-4",
+    "GPT 3.5 Turbo": "gpt-3.5-turbo",
+    }
+
+
 
 def button_click(main_window, btn):
     btn_name = btn.objectName()
@@ -34,11 +43,11 @@ def button_click(main_window, btn):
 def expand_settings(main_window):
     width = main_window.SettingsExpand.width()
     if width == 0:
-        widthExtended = Settings.EXPAND_WIDTH 
+        widthExtended = SETTINGS.EXPAND_WIDTH 
     else:
         widthExtended = 0   
     main_window.left_box = QPropertyAnimation(main_window.SettingsExpand, b"minimumWidth")
-    main_window.left_box.setDuration(Settings.TIME_ANIMATION)
+    main_window.left_box.setDuration(SETTINGS.TIME_ANIMATION)
     main_window.left_box.setStartValue(width)
     main_window.left_box.setEndValue(widthExtended)
     main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
@@ -53,11 +62,11 @@ def on_box_cosine_changed(main_window, check_box):
 def expand_about(main_window):
     width = main_window.AboutFrame.width()
     if width == 0:
-        widthExtended = Settings.EXPAND_WIDTH 
+        widthExtended = SETTINGS.EXPAND_WIDTH 
     else:
         widthExtended = 0   
     main_window.left_box = QPropertyAnimation(main_window.AboutFrame, b"minimumWidth")
-    main_window.left_box.setDuration(Settings.TIME_ANIMATION)
+    main_window.left_box.setDuration(SETTINGS.TIME_ANIMATION)
     main_window.left_box.setStartValue(width)
     main_window.left_box.setEndValue(widthExtended)
     main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
@@ -112,43 +121,42 @@ def display_template_content(main_window):
     for i, sentence in enumerate(template_file):
         item = QTableWidgetItem(sentence.content)
         main_window.data_table.setItem(i, 0, item)
+        main_window.data_table.setItem(i, 1, QTableWidgetItem(""))
 
 # Enable or disable the delete button based on row selection
 def items_selected(main_window):
     indexes = main_window.data_table.selectedItems()
-    if len(indexes) == 0:
-        main_window.btn_delete_row.setEnabled(False)
-    else:
-        main_window.btn_delete_row.setEnabled(True)
+    if not disable_delete:
+        if len(indexes) == 0:
+            main_window.btn_delete_row.setEnabled(False)
+        else:
+            main_window.btn_delete_row.setEnabled(True)
 
 
-def shift_items_up(main_window):
-    for j in range(main_window.data_table.columnCount()):
-        items = [main_window.data_table.item(i, j).text() for i in range(main_window.data_table.rowCount()) if main_window.data_table.item(i, j)]
-        for i in range(main_window.data_table.rowCount()):
-            if i < len(items):
-                main_window.data_table.setItem(i, j, QTableWidgetItem(items[i]))
-            else:
-                main_window.data_table.setItem(i, j, None)
-
-
-# Removes selected row on delete button click
 def delete_row(main_window):
-    global template_file
-    selectedItems = main_window.data_table.selectedItems()
-    for item in selectedItems:    
-        if item.column() == 0:
-            item_text = item.text()
-            for subtitle in template_file:
-                if subtitle.content == item_text:
-                    template_file.remove(subtitle)
-        main_window.data_table.setItem(item.row(), item.column(), None)
-    shift_items_up(main_window)
+    # Save table
+    table_data = []
+    for i in range(main_window.data_table.rowCount()):
+        row_data = []
+        for j in range(main_window.data_table.columnCount()):
+            item = main_window.data_table.item(i, j)
+            row_data.append(item.text() if item and item.text() else "")
+        table_data.append(row_data)
 
-    for row in reversed(range(main_window.data_table.rowCount())):
-        if all(main_window.data_table.item(row, col) is None 
-               for col in range(main_window.data_table.columnCount())):
-            main_window.data_table.removeRow(row)
+    # Mark for deletion
+    selectedItems = main_window.data_table.selectedItems()
+    for item in selectedItems:
+        table_data[item.row()][item.column()] = None  # Mark the item for deletion
+
+    # Delete
+    main_window.data_table.setRowCount(0)  # Clear the table
+    for col in range(len(table_data[0])): 
+        column_items = [row_data[col] for row_data in table_data if row_data[col] is not None]  # Skip deleted items
+        for row, item in enumerate(column_items):
+            if row == main_window.data_table.rowCount():
+                main_window.data_table.insertRow(row)
+            main_window.data_table.setItem(row, col, QTableWidgetItem(item))
+
 
 
 def save_template_file(main_window):
@@ -182,8 +190,8 @@ def cosine_similarity(sentences_embeddings, translations_embeddings):
     return similarity
 
 
-def create_sentences_dictionaries(prompt, max_tokens):
-    enc = tiktoken.get_encoding("cl100k_base")
+def create_sentences_dictionaries(main_window, prompt, max_tokens, model):
+    enc = tiktoken.encoding_for_model(model)
     prompt_tokens = enc.encode(prompt)
     current_tokens = len(prompt_tokens)
 
@@ -191,22 +199,21 @@ def create_sentences_dictionaries(prompt, max_tokens):
     num_dictionaries = 0
     sentences_list[f"{num_dictionaries}"] = {}
 
-    for i, sentence in enumerate(template_file):         
-        sen = sentence.content.strip()
+    for i in range(main_window.data_table.rowCount()):
+        item = main_window.data_table.item(i, 0)  # Get the item in the first column
+        if item is not None:  # Check if the item is not None
+            sen = item.text().strip()  # Get the text of the item
 
-        # Remove unicode characters if any
-        sen = sen.replace("\u202b", "").replace("\u202c", "")
+            # Replace multiple spaces with a single space
+            tokens = enc.encode(sen)
 
-        # Replace multiple spaces with a single space
-        tokens = enc.encode(sen)
-
-        if current_tokens + len(tokens) > max_tokens:
-            current_tokens = len(prompt_tokens)
-            num_dictionaries = num_dictionaries + 1
-            sentences_list[f"{num_dictionaries}"] = {}
-        
-        sentences_list[f"{num_dictionaries}"][f"s_{i}"] = sen
-        current_tokens += len(tokens)
+            if current_tokens + len(tokens) > max_tokens:
+                current_tokens = len(prompt_tokens)
+                num_dictionaries = num_dictionaries + 1
+                sentences_list[f"{num_dictionaries}"] = {}
+            
+            sentences_list[f"{num_dictionaries}"][f"s_{i}"] = sen
+            current_tokens += len(tokens)
 
     return sentences_list
 
@@ -216,7 +223,6 @@ def disable_some_buttons(main_window):
     main_window.btn_start.setText("Pause")
     main_window.btn_back.setEnabled(False)
     main_window.btn_settings.setEnabled(False)
-    main_window.btn_delete_row.setEnabled(False)
     main_window.btn_save.setEnabled(False)
     main_window.data_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
     main_window.data_table.setFocusPolicy(Qt.NoFocus)
@@ -228,13 +234,11 @@ def enable_some_buttons(main_window):
     main_window.btn_start.setText("Start")
     main_window.btn_back.setEnabled(True)
     main_window.btn_settings.setEnabled(True)
-    main_window.btn_delete_row.setEnabled(True)
     main_window.btn_save.setEnabled(True)
-
     main_window.data_table.setEditTriggers(QAbstractItemView.AllEditTriggers)
     main_window.data_table.setFocusPolicy(Qt.StrongFocus)
     main_window.data_table.setSelectionMode(QAbstractItemView.ExtendedSelection)
-
+    
 
 @asyncSlot() 
 async def get_embeddings(client, text):
@@ -249,12 +253,15 @@ async def get_embeddings(client, text):
 async def communicate_with_api(main_window):
     global async_signal_used
     global waiting_loop
+    global disable_delete
     if main_window.btn_start.isChecked() and not async_signal_used:
         async_signal_used = True
+        main_window.btn_delete_row.setEnabled(False)
+        disable_delete = True
         disable_some_buttons(main_window)
             
         width = main_window.SettingsExpand.width()
-        if width == Settings.EXPAND_WIDTH:
+        if width == SETTINGS.EXPAND_WIDTH:
             expand_settings(main_window)
 
         movie = QMovie(":/gifs/images/loading.gif") 
@@ -273,14 +280,8 @@ async def communicate_with_api(main_window):
         This input is a JSON string. Please keep it as is and only replace the values with the translations.
         """
         max_tokens = int(main_window.max_tokens.text())
-        sentences_list = create_sentences_dictionaries(prompt, max_tokens)
-
-        model = main_window.combo_model.currentText()
-
-        if (model == "GPT4"):
-            model = "gpt-4"
-        else:
-            model = "gpt-3.5-turbo" 
+        model = SETTINGS.MODEL_MAP[main_window.combo_model.currentText()]
+        sentences_list = create_sentences_dictionaries(main_window, prompt, max_tokens, model)
 
         row = 0 
         for _, outer_value in sentences_list.items():
@@ -316,9 +317,6 @@ async def communicate_with_api(main_window):
                             continue
                 
                     for _, sentence in enumerate(translations_sentences):
-                        if target_lang == "Arabic":
-                            sentence = "\u202b" + sentence + "\u202c"
-
                         item = QTableWidgetItem(sentence)
                         main_window.data_table.setItem(row, 1, item)
                         row = row + 1
@@ -353,12 +351,15 @@ async def communicate_with_api(main_window):
             
         enable_some_buttons(main_window)
         async_signal_used = False
+        disable_delete = False 
+        main_window.btn_delete_row.setEnabled(True)
         main_window.btn_start.setChecked(False)
         main_window.btn_start.setCheckable(True)
         movie.stop() 
         main_window.loading_gif.hide()
     else:
-        if main_window.btn_start.isChecked() == False:
+        # Needed to prevent multiple clicks for Stop
+        if not main_window.btn_start.isChecked(): 
             main_window.btn_start.setCheckable(False)
         else:
             waiting_loop = False
