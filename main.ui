@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1157</width>
-    <height>650</height>
+    <width>1150</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -46,20 +46,13 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">/*
-A child object is stored inside its parent object, but it doesn’t necessarily inherit from it. 
-For example, if a QPushButton is inside a QFrame, then QPushButton doesn't inherit from QFrame, but it is an object inside that QFrame object.
-https://doc.qt.io/qt-6/stylesheet-syntax.html
-*/
-
-/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
-* {
+    <string notr="true">* {
     border: none;
 	border-radius: 8px;
 }
 QWidget { 
    background-color: transparent;
-	color: rgb(221, 221, 221);
+   color: rgb(221, 221, 221);
 	font: 12pt &quot;Segoe UI&quot;;
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -96,14 +89,15 @@ QComboBox QAbstractItemView {
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+QTableWidget {
+    gridline-color: rgb(33, 37, 43); 
+}
+
 QTableWidget::item{
 	padding-left: 4px;
 	padding-right: 4px;
-	border: 1px solid rgb(44, 49, 60);
 }
-QTableWidget::item:selected{
-	background-color: rgb(0, 128, 255);
-}
+
 QHeaderView::section{
 	background-color: rgb(33, 37, 43);
 	padding: 4px;
@@ -252,10 +246,10 @@ QPlainTextEdit#prompt_edit {
        </size>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -276,10 +270,10 @@ QPlainTextEdit#prompt_edit {
        <item>
         <widget class="QFrame" name="MenuFrame">
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Shape::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalMenuLayout">
           <property name="spacing">
@@ -297,7 +291,7 @@ QPlainTextEdit#prompt_edit {
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item alignment="Qt::AlignBottom">
+          <item alignment="Qt::AlignmentFlag::AlignBottom">
            <widget class="QFrame" name="BottomMenu">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -306,10 +300,10 @@ QPlainTextEdit#prompt_edit {
              </sizepolicy>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_9">
              <property name="spacing">
@@ -353,7 +347,7 @@ QPlainTextEdit#prompt_edit {
                 <cursorShape>ArrowCursor</cursorShape>
                </property>
                <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
+                <enum>Qt::LayoutDirection::LeftToRight</enum>
                </property>
                <property name="styleSheet">
                 <string notr="true"/>
@@ -402,7 +396,7 @@ QPlainTextEdit#prompt_edit {
       </layout>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignmentFlag::AlignTop">
      <widget class="QFrame" name="SettingsExpand">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -426,10 +420,10 @@ QPlainTextEdit#prompt_edit {
        <string notr="true"/>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <property name="spacing">
@@ -464,14 +458,14 @@ QPlainTextEdit#prompt_edit {
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>360</height>
+           <height>16777215</height>
           </size>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
+          <enum>QFrame::Shape::StyledPanel</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Shadow::Raised</enum>
          </property>
          <property name="lineWidth">
           <number>1</number>
@@ -534,13 +528,13 @@ QPlainTextEdit#prompt_edit {
              </size>
             </property>
             <property name="inputMethodHints">
-             <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+             <set>Qt::InputMethodHint::ImhHiddenText|Qt::InputMethodHint::ImhNoAutoUppercase|Qt::InputMethodHint::ImhNoPredictiveText|Qt::InputMethodHint::ImhSensitiveData</set>
             </property>
             <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
+             <enum>QLineEdit::EchoMode::Password</enum>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
            </widget>
           </item>
@@ -555,13 +549,13 @@ QPlainTextEdit#prompt_edit {
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>80</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>60</height>
+              <height>80</height>
              </size>
             </property>
             <property name="html">
@@ -606,6 +600,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="text">
                <string>Input Tokens</string>
               </property>
@@ -637,13 +637,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>0</height>
+              <height>80</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>70</height>
+              <height>80</height>
              </size>
             </property>
             <property name="html">
@@ -654,55 +654,10 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;More tokens can improve translation but may misalign input and output. This option corrects alignment, but uses more tokens and time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;More tokens can improve translation accuracy; but might cause alignment issues&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="ModelFrame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>360</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_10">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
            <widget class="QLabel" name="lbl_model">
             <property name="sizePolicy">
@@ -752,61 +707,39 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
             <item>
              <property name="text">
-              <string>GPT4</string>
+              <string>GPT 4o</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>GPT3</string>
+              <string>GPT 4 Turbo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>GPT 4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>GPT 3.5 Turbo</string>
              </property>
             </item>
            </widget>
           </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="CosineFrame">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>360</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>150</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_12">
-          <property name="spacing">
-           <number>6</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>60</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QCheckBox" name="box_cosine">
             <property name="sizePolicy">
@@ -814,6 +747,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
             </property>
             <property name="font">
              <font>
@@ -870,7 +815,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <string>0.6</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
               <property name="readOnly">
                <bool>false</bool>
@@ -885,7 +830,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <item>
            <widget class="QTextBrowser" name="cosine_info">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -899,7 +844,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>100</height>
+              <height>80</height>
              </size>
             </property>
             <property name="html">
@@ -910,7 +855,7 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;(Experimental) Compares input-output embeddings, potentially enhancing accuracy but requiring more tokens and time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;Compares input-output embeddings to enhance translation accuracy [0, 1] where 1 indicate perfect translation and indicates no similarity between input and output&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -923,10 +868,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <item>
      <widget class="QFrame" name="ContentBox">
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
@@ -959,10 +904,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </size>
          </property>
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Shape::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
@@ -986,20 +931,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt;&quot;&gt;SubGPT&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
             <property name="margin">
              <number>5</number>
             </property>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
+          <item alignment="Qt::AlignmentFlag::AlignRight">
            <widget class="QFrame" name="frame">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::Shape::StyledPanel</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <property name="spacing">
@@ -1045,10 +990,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <item>
         <widget class="QFrame" name="ContentBottom">
          <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+          <enum>QFrame::Shape::NoFrame</enum>
          </property>
          <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <property name="spacing">
@@ -1069,10 +1014,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <item>
            <widget class="QFrame" name="PagesContainer">
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Shape::NoFrame</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::Shadow::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <property name="spacing">
@@ -1099,7 +1044,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </size>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="Home">
                 <layout class="QVBoxLayout" name="verticalLayout">
@@ -1171,7 +1116,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       </size>
                      </property>
                      <property name="layoutDirection">
-                      <enum>Qt::LeftToRight</enum>
+                      <enum>Qt::LayoutDirection::LeftToRight</enum>
                      </property>
                      <property name="text">
                       <string>Open</string>
@@ -1287,13 +1232,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       </sizepolicy>
                      </property>
                      <property name="verticalScrollBarPolicy">
-                      <enum>Qt::ScrollBarAsNeeded</enum>
+                      <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
                      </property>
                      <property name="horizontalScrollBarPolicy">
-                      <enum>Qt::ScrollBarAsNeeded</enum>
+                      <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
                      </property>
                      <property name="lineWrapMode">
-                      <enum>QPlainTextEdit::NoWrap</enum>
+                      <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                      </property>
                      <property name="plainText">
                       <string>As an expert subtitle translator, your task is to translate the provided subtitles.
@@ -1307,7 +1252,7 @@ Remember, your role is solely translation. No additional responses are required.
                    </item>
                   </layout>
                  </item>
-                 <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                 <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
                   <widget class="QPushButton" name="btn_next">
                    <property name="enabled">
                     <bool>true</bool>
@@ -1361,10 +1306,10 @@ Remember, your role is solely translation. No additional responses are required.
                  <item>
                   <widget class="QScrollArea" name="ScrollArea">
                    <property name="verticalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAsNeeded</enum>
+                    <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
                    </property>
                    <property name="horizontalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAlwaysOff</enum>
+                    <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
                    </property>
                    <property name="widgetResizable">
                     <bool>true</bool>
@@ -1374,8 +1319,8 @@ Remember, your role is solely translation. No additional responses are required.
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>701</width>
-                      <height>521</height>
+                      <width>1054</width>
+                      <height>585</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1438,10 +1383,10 @@ Remember, your role is solely translation. No additional responses are required.
                     </size>
                    </property>
                    <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
+                    <enum>QFrame::Shape::StyledPanel</enum>
                    </property>
                    <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
+                    <enum>QFrame::Shadow::Raised</enum>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_3">
                     <property name="spacing">
@@ -1618,10 +1563,10 @@ Remember, your role is solely translation. No additional responses are required.
        </size>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_13">
        <property name="spacing">
@@ -1661,13 +1606,16 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:72pt;&quot;&gt;SubGPT&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;V1.0&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:72pt;&quot;&gt;SubGPT&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;V1.0&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Provides translations for multiple languages using OpenAI's GPT&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Developer&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;aalramadan&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Provides translations for multiple languages using ChatGPT.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Ali Al-Ramadan - Developer &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Hussein Abu-Rayyash - Researcher&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
