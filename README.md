@@ -25,8 +25,7 @@
 
 
 ## **Demo**
-
-
+![Animation](https://github.com/aalramadan/SubGPT/assets/55710790/c465d7e4-5c1a-42ef-bc70-2a1ee7c3c25c)
 
 ## **Disclaimer**
 **SubGPT** is part of a collaborative research funded by the Arab Observatory for Translation (an affiliate of ALECSO), which is supported by the Literature, Publishing & Translation Commission in Saudi Arabia. </br>
