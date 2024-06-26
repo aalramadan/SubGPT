@@ -1,16 +1,9 @@
 Build (Windows):
-pyinstaller --onefile --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico" main.py
+pyinstaller --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico" main.py
 
-or
+* Use for debugging --> --console instead of --windowed 
 
-nuitka --onefile --plugin-enable=pyside6 --show-modules --include-package=tiktoken --include-package=tiktoken_ext --windows-icon-from-ico="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico" main.py
-
-
---console instead of --windowed 
---enable-console instead of --onefile
-
-
-###########################
+#################################################################################
 Python packages used:
 annotated-types              0.7.0
 anyio                        4.4.0

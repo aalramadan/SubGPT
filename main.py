@@ -4,7 +4,6 @@ from PySide6.QtGui import QIcon
 from qasync import QEventLoop
 import ui_functions 
 import asyncio
-import ctypes
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -30,10 +29,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
 if __name__ == "__main__":
     app = QApplication()
-
-    # Needed to make Windows use an icon for SubGPT in the taskbar (For building only)
-    myappid = 'SubGPT.Unique.Identifier'  
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     loop = QEventLoop(app) 
     asyncio.set_event_loop(loop)
