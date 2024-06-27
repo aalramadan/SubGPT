@@ -1,5 +1,5 @@
 # **🛠 SubGPT**
-![alt text](image.png)
+![image](https://github.com/aalramadan/SubGPT/assets/55710790/da8d3fa0-1eb7-4909-81fb-1ca311d45d2d)
 
 ## **💡What does it do?**
 **SubGPT** provides translations for multiple languages using OpenAI's GPT. 
