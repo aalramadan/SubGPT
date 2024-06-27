@@ -96,6 +96,9 @@ def load_template_file(main_window):
         issue_warning_error(main_window, "Warning", "File not found")
     except SRTParseError:
         issue_warning_error(main_window, "Error", "Can't parse the template file\nFile might be corrupted")
+    except IsADirectoryError:
+        issue_warning_error(main_window, "Error", "Can't parse directories.\nPlease select a template file")
+    
 
 def check_inputs(main_window):
     global template_loaded      

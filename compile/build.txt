@@ -1,6 +1,8 @@
 Build (Windows):
-pyinstaller --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico" main.py
+pyinstaller --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="C:\Users\Ali\Desktop\SubGPT\images\images\icon.ico" main.py
 
+Build (Mac OS):
+pyinstaller --onefile --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="/Users/Ali/Desktop/SubGPT/images/images/icon.icns" main.py
 * Use for debugging --> --console instead of --windowed 
 
 #################################################################################

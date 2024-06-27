@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainecyaCk.ui'
+## Form generated from reading UI file 'mainjfyrIP.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -27,35 +27,39 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1150, 714)
+        MainWindow.resize(1515, 714)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QSize(1150, 650))
+        font = QFont()
+        font.setFamilies([u"Tahoma"])
+        font.setPointSize(9)
+        MainWindow.setFont(font)
         MainWindow.setWindowTitle(u"SubGPT")
         icon = QIcon()
-        icon.addFile(u":/images/images/images/title_bar_icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/images/images/images/icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
         self.CentralWidget = QWidget(MainWindow)
         self.CentralWidget.setObjectName(u"CentralWidget")
-        font = QFont()
-        font.setFamilies([u"Segoe UI"])
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
-        self.CentralWidget.setFont(font)
+        font1 = QFont()
+        font1.setFamilies([u"Tahoma"])
+        font1.setPointSize(13)
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.CentralWidget.setFont(font1)
         self.CentralWidget.setStyleSheet(u"* {\n"
 "    border: none;\n"
 "	border-radius: 8px;\n"
+"	font: 13pt \"Tahoma\";\n"
 "}\n"
 "QWidget { \n"
 "   background-color: transparent;\n"
 "   color: rgb(221, 221, 221);\n"
-"	font: 12pt \"Segoe UI\";\n"
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QPushButton {\n"
@@ -82,8 +86,8 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(61, 70, 86);\n"
 "}\n"
 "QComboBox::drop-down {\n"
-"	background-image: url(:/icons/images/icons/c"
-                        "il-arrow-bottom.png);\n"
+"	background-image: url(:/icons/images/icons/cil"
+                        "-arrow-bottom.png);\n"
 "	background-position: center;\n"
 "	background-repeat: no-reperat;\n"
 " }\n"
@@ -116,8 +120,8 @@ class Ui_MainWindow(object):
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QPlainTextEdit {\n"
-"	bac"
-                        "kground-color: rgb(33, 37, 43);\n"
+"	backg"
+                        "round-color: rgb(33, 37, 43);\n"
 "}\n"
 "QPlainTextEdit:hover {\n"
 "	border: 2px solid rgb(64, 71, 86);\n"
@@ -205,7 +209,7 @@ class Ui_MainWindow(object):
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QFrame#IconFrame {\n"
-"	border-image: url(:/images/images/images/title_bar_icon_original.png) 0 0 0 0 stretch stretch;\n"
+"	border-image: url(:/images/images/images/icon.png) 0 0 0 0 stretch stretch;\n"
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QWidget#CentralWidget {	\n"
@@ -258,7 +262,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.btn_settings.sizePolicy().hasHeightForWidth())
         self.btn_settings.setSizePolicy(sizePolicy)
         self.btn_settings.setMinimumSize(QSize(0, 45))
-        self.btn_settings.setFont(font)
+        self.btn_settings.setFont(font1)
         self.btn_settings.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.btn_settings.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.btn_settings.setStyleSheet(u"")
@@ -322,7 +326,7 @@ class Ui_MainWindow(object):
         self.lbl_token.setObjectName(u"lbl_token")
         sizePolicy.setHeightForWidth(self.lbl_token.sizePolicy().hasHeightForWidth())
         self.lbl_token.setSizePolicy(sizePolicy)
-        self.lbl_token.setFont(font)
+        self.lbl_token.setFont(font1)
 
         self.verticalLayout_11.addWidget(self.lbl_token)
 
@@ -405,7 +409,7 @@ class Ui_MainWindow(object):
         self.combo_model.setSizePolicy(sizePolicy)
         self.combo_model.setMinimumSize(QSize(0, 50))
         self.combo_model.setMaximumSize(QSize(16777215, 16777215))
-        self.combo_model.setFont(font)
+        self.combo_model.setFont(font1)
 
         self.verticalLayout_11.addWidget(self.combo_model)
 
@@ -419,7 +423,7 @@ class Ui_MainWindow(object):
         self.box_cosine.setSizePolicy(sizePolicy)
         self.box_cosine.setMinimumSize(QSize(0, 30))
         self.box_cosine.setMaximumSize(QSize(16777215, 16777215))
-        self.box_cosine.setFont(font)
+        self.box_cosine.setFont(font1)
 
         self.verticalLayout_11.addWidget(self.box_cosine)
 
@@ -430,6 +434,7 @@ class Ui_MainWindow(object):
         self.lbl_threshold.setEnabled(True)
         sizePolicy.setHeightForWidth(self.lbl_threshold.sizePolicy().hasHeightForWidth())
         self.lbl_threshold.setSizePolicy(sizePolicy)
+        self.lbl_threshold.setMaximumSize(QSize(100, 16777215))
 
         self.gridLayout.addWidget(self.lbl_threshold, 1, 0, 1, 1)
 
@@ -540,7 +545,7 @@ class Ui_MainWindow(object):
         self.GridLayout.setContentsMargins(9, 9, 9, 9)
         self.lbl_input = QLabel(self.Home)
         self.lbl_input.setObjectName(u"lbl_input")
-        self.lbl_input.setFont(font)
+        self.lbl_input.setFont(font1)
 
         self.GridLayout.addWidget(self.lbl_input, 0, 0, 1, 1)
 
@@ -641,7 +646,7 @@ class Ui_MainWindow(object):
         self.ScrollArea.setWidgetResizable(True)
         self.ScrollAreaWidgetContents = QWidget()
         self.ScrollAreaWidgetContents.setObjectName(u"ScrollAreaWidgetContents")
-        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1054, 585))
+        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1059, 587))
         self.verticalLayout_5 = QVBoxLayout(self.ScrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -767,11 +772,12 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.CentralWidget)
         self.statusBar = QStatusBar(MainWindow)
         self.statusBar.setObjectName(u"statusBar")
+        self.statusBar.setFont(font)
         MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(1)
+        self.StackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -787,10 +793,10 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">You can get the API keys from here:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://platform.openai.com/api-keys\"><span style=\" font-size:10pt; text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body>"
-                        "</html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://platform.openai.com/api-keys\"><span style=\" font-size:10pt; text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body></"
+                        "html>", None))
         self.max_tokens.setText(QCoreApplication.translate("MainWindow", u"300", None))
         self.lbl_max_tokens.setText(QCoreApplication.translate("MainWindow", u"Input Tokens", None))
         self.alignment_box.setText(QCoreApplication.translate("MainWindow", u"Fix Alignment", None))
@@ -800,7 +806,7 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">More tokens can improve translation accuracy; but might cause alignment issues</span></p></body></html>", None))
         self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Model:</p></body></html>", None))
         self.combo_model.setItemText(0, QCoreApplication.translate("MainWindow", u"GPT 4o", None))
@@ -819,7 +825,7 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Compares input-output embeddings to enhance translation accuracy [0, 1] where 1 indicate perfect translation and indicates no similarity between input and output</span></p></body></html>", None))
         self.lbl_title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:28pt;\">SubGPT</span></p></body></html>", None))
         self.loading_gif.setText("")
@@ -847,19 +853,16 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt;\">SubGPT</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:700;\">v1.1</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text"
-                        "-indent:0px;\">Provides translations for multiple languages using OpenAI's GPT</p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">v1.1.0</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
+                        "t:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Provides translations for multiple languages using OpenAI's GPT</p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:700;\">Developer</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Developers</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">aalramadan</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px"
-                        "; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">HusseinAbuRayyash</p></body></html>", None))
         pass
     # retranslateUi
 
