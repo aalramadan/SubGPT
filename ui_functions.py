@@ -201,22 +201,25 @@ def create_sentences_dictionaries(main_window, prompt, max_tokens, model):
     sentences_list = {}
     num_dictionaries = 0
     sentences_list[f"{num_dictionaries}"] = {}
+    firstCheck = True
 
     for i in range(main_window.data_table.rowCount()):
         item = main_window.data_table.item(i, 0)  # Get the item in the first column
-        if item is not None:  # Check if the item is not None
-            sen = item.text().strip()  # Get the text of the item
+        sen = item.text().strip()  # Get the text of the item
 
-            # Replace multiple spaces with a single space
-            tokens = enc.encode(sen)
+        # Replace multiple spaces with a single space
+        tokens = enc.encode(sen)
 
-            if current_tokens + len(tokens) > max_tokens:
-                current_tokens = len(prompt_tokens)
-                num_dictionaries = num_dictionaries + 1
+        if current_tokens + len(tokens) > max_tokens:
+            current_tokens = len(prompt_tokens)
+            if not firstCheck:
+                num_dictionaries = num_dictionaries + 1    
                 sentences_list[f"{num_dictionaries}"] = {}
-            
-            sentences_list[f"{num_dictionaries}"][f"s_{i}"] = sen
-            current_tokens += len(tokens)
+        
+        sentences_list[f"{num_dictionaries}"][f"s_{i}"] = sen
+        current_tokens += len(tokens)
+        if firstCheck:
+            firstCheck = False
 
     return sentences_list
 
@@ -254,117 +257,117 @@ async def get_embeddings(client, text):
 
 @asyncSlot()
 async def communicate_with_api(main_window):
-    global async_signal_used
-    global waiting_loop
-    global disable_delete
-    if main_window.btn_start.isChecked() and not async_signal_used:
-        async_signal_used = True
-        main_window.btn_delete_row.setEnabled(False)
-        disable_delete = True
-        disable_some_buttons(main_window)
-            
-        width = main_window.SettingsExpand.width()
-        if width == SETTINGS.EXPAND_WIDTH:
-            expand_settings(main_window)
-
-        movie = QMovie(":/gifs/images/loading.gif") 
-        movie.setScaledSize(QSize(45, 45))
-        main_window.loading_gif.setMovie(movie) 
-        main_window.loading_gif.show()
-        movie.start()
-
-        client = AsyncOpenAI(api_key = main_window.token_edit.text()) 
-
-        target_lang = main_window.target_language.text()
-
-        prompt = f"""
-        {main_window.prompt_edit.toPlainText()}
-        The target language of translation is {target_lang}.
-        This input is a JSON string. Please keep it as is and only replace the values with the translations.
-        """
-        max_tokens = int(main_window.max_tokens.text())
-        model = SETTINGS.MODEL_MAP[main_window.combo_model.currentText()]
-        sentences_list = create_sentences_dictionaries(main_window, prompt, max_tokens, model)
-
-        row = 0 
-        for _, outer_value in sentences_list.items():
-            json_string = json.dumps(outer_value)                    
-            try:   
-                if main_window.box_cosine.isChecked():
-                    sentences_string = ' '.join(outer_value.values())
-                    sentences_embeddings = await get_embeddings(client, str(sentences_string)) 
-                while True:       
-                    response =  await client.chat.completions.create (
-                        model=model,
-                        messages=[
-                            {"role": "system", "content": prompt},
-                            {"role": "user", "content": json_string}
-                        ]
-                    )         
-                    dict_sentences = response.choices[0].message.content
-
-                    try:
-                        translations_sentences = list(json.loads(dict_sentences).values())
-                    except:
-                        translations_sentences = re.findall(r'": "(.*?)(?="[,}])', dict_sentences)
-                
-                    if main_window.alignment_box.isChecked():
-                        if len(translations_sentences) != len(outer_value.values()):
-                            continue
-                
-                    if main_window.box_cosine.isChecked():
-                        translations_string = ' '.join(translations_sentences)
-                        translations_embeddings = await get_embeddings(client, translations_string)
-                        score = cosine_similarity(sentences_embeddings, translations_embeddings)
-                        if score < float(main_window.threshold_edit.text()):
-                            continue
-                
-                    for _, sentence in enumerate(translations_sentences):
-                        item = QTableWidgetItem(sentence)
-                        main_window.data_table.setItem(row, 1, item)
-                        row = row + 1
-                    main_window.repaint()
-                    break
-                
-                if not main_window.btn_start.isChecked():
-                    enable_some_buttons(main_window)
-                    main_window.btn_settings.setEnabled(False)
-                    main_window.btn_back.setEnabled(False)
-                    movie.stop()
-                    main_window.loading_gif.hide()
-                    waiting_loop = True
-                    main_window.btn_start.setCheckable(True)
-                    while waiting_loop:
-                        await sleep(1)
-                    main_window.btn_start.setCheckable(True)
-                    main_window.btn_start.setChecked(True)   
-                    disable_some_buttons(main_window)
-                    main_window.loading_gif.setMovie(movie) 
-                    main_window.loading_gif.show()
-                    movie.start()         
-            except AuthenticationError:
-                issue_warning_error(main_window, "Invalid API Key", "Please provide a valid API key")
-                break
-            except APIConnectionError:
-                issue_warning_error(main_window, "No API Key Provide", "Please provide an API key")
-                break
-            except Exception as e:
-                issue_warning_error(main_window, "Error",f"Something happened: {e}")
-                break
-            
-        enable_some_buttons(main_window)
-        async_signal_used = False
-        disable_delete = False 
-        main_window.btn_delete_row.setEnabled(True)
+    if int(main_window.max_tokens.text()) <= 0:
+        issue_warning_error(main_window, "Error", "Input tokens must be greater than 0")  
         main_window.btn_start.setChecked(False)
         main_window.btn_start.setCheckable(True)
-        movie.stop() 
-        main_window.loading_gif.hide()
     else:
-        # Needed to prevent multiple clicks for Stop
-        if not main_window.btn_start.isChecked(): 
-            main_window.btn_start.setCheckable(False)
+        global async_signal_used
+        global waiting_loop
+        global disable_delete
+        if main_window.btn_start.isChecked() and not async_signal_used:
+            async_signal_used = True
+            main_window.btn_delete_row.setEnabled(False)
+            disable_delete = True
+            disable_some_buttons(main_window)
+                
+            width = main_window.SettingsExpand.width()
+            if width == SETTINGS.EXPAND_WIDTH:
+                expand_settings(main_window)
+
+            movie = QMovie(":/gifs/images/loading.gif") 
+            movie.setScaledSize(QSize(45, 45))
+            main_window.loading_gif.setMovie(movie) 
+            main_window.loading_gif.show()
+            movie.start()
+
+            client = AsyncOpenAI(api_key = main_window.token_edit.text()) 
+
+            target_lang = main_window.target_language.text()
+
+            prompt = f"""
+            {main_window.prompt_edit.toPlainText()}
+            The target language of translation is {target_lang}.
+            This input is a JSON string. Please keep it as is and only replace the values with the translations.
+            """
+            max_tokens = int(main_window.max_tokens.text())
+
+            model = SETTINGS.MODEL_MAP[main_window.combo_model.currentText()]
+            sentences_list = create_sentences_dictionaries(main_window, prompt, max_tokens, model)
+
+            row = 0 
+            for _, outer_value in sentences_list.items():
+                json_string = json.dumps(outer_value)                    
+                try:   
+                    if main_window.box_cosine.isChecked():
+                        sentences_string = ' '.join(outer_value.values())
+                        sentences_embeddings = await get_embeddings(client, str(sentences_string)) 
+                    while True:       
+                        response =  await client.chat.completions.create (
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": prompt},
+                                {"role": "user", "content": json_string}
+                            ]
+                        )         
+                        dict_sentences = response.choices[0].message.content
+
+                        try:
+                            translations_sentences = list(json.loads(dict_sentences).values())
+                        except:
+                            translations_sentences = re.findall(r'": "(.*?)(?="[,}])', dict_sentences)
+                    
+                        if main_window.alignment_box.isChecked():
+                            if len(translations_sentences) != len(outer_value.values()):
+                                continue
+                    
+                        if main_window.box_cosine.isChecked():
+                            translations_string = ' '.join(translations_sentences)
+                            translations_embeddings = await get_embeddings(client, translations_string)
+                            score = cosine_similarity(sentences_embeddings, translations_embeddings)
+                            if score < float(main_window.threshold_edit.text()):
+                                continue
+                    
+                        for _, sentence in enumerate(translations_sentences):
+                            item = QTableWidgetItem(sentence)
+                            main_window.data_table.setItem(row, 1, item)
+                            row = row + 1
+                        main_window.repaint()
+                        break
+                    
+                    if not main_window.btn_start.isChecked():
+                        enable_some_buttons(main_window)
+                        main_window.btn_settings.setEnabled(False)
+                        main_window.btn_back.setEnabled(False)
+                        movie.stop()
+                        main_window.loading_gif.hide()
+                        waiting_loop = True
+                        main_window.btn_start.setCheckable(True)
+                        while waiting_loop:
+                            await sleep(1)
+                        main_window.btn_start.setCheckable(True)
+                        main_window.btn_start.setChecked(True)   
+                        disable_some_buttons(main_window)
+                        main_window.loading_gif.setMovie(movie) 
+                        main_window.loading_gif.show()
+                        movie.start()         
+                except Exception as e:
+                    issue_warning_error(main_window, "Error",f"{e}")
+                    break
+                
+            enable_some_buttons(main_window)
+            async_signal_used = False
+            disable_delete = False 
+            main_window.btn_delete_row.setEnabled(True)
+            main_window.btn_start.setChecked(False)
+            main_window.btn_start.setCheckable(True)
+            movie.stop() 
+            main_window.loading_gif.hide()
         else:
-            waiting_loop = False
+            # Needed to prevent multiple clicks for Stop
+            if not main_window.btn_start.isChecked(): 
+                main_window.btn_start.setCheckable(False)
+            else:
+                waiting_loop = False
 
         

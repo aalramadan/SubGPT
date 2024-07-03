@@ -1,7 +1,8 @@
 <RCC>
+  <qresource prefix="gifs">
+    <file>images/loading.gif</file>
+  </qresource>
   <qresource prefix="icons">
-    <file>images/icons/warning.png</file>
-    <file>images/icons/info.png</file>
     <file>images/icons/cil-3d.png</file>
     <file>images/icons/cil-4k.png</file>
     <file>images/icons/cil-account-logout.png</file>
@@ -257,12 +258,13 @@
     <file>images/icons/icon_minimize.png</file>
     <file>images/icons/icon_restore.png</file>
     <file>images/icons/icon_settings.png</file>
+    <file>images/icons/info.png</file>
+    <file>images/icons/warning.png</file>
   </qresource>
   <qresource prefix="images">
+    <file>images/images/arrow.png</file>
+    <file>images/images/icon.icns</file>
+    <file>images/images/icon.ico</file>
     <file>images/images/icon.png</file>
-    <file>images/images/icon.png</file>
-  </qresource>
-  <qresource prefix="gifs">
-    <file>images/loading.gif</file>
   </qresource>
 </RCC>

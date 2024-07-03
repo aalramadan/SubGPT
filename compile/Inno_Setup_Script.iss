@@ -35,11 +35,11 @@ WizardStyle=modern
 ; Run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest 
 
-SetupIconFile="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico"
+SetupIconFile="C:\Users\Ali\Desktop\SubGPT\images\images\icon.ico"
 
 ; Used to display version in installer properties
 VersionInfoVersion={#MyAppVersion}
-UninstallDisplayIcon="C:\Users\Ali\Desktop\SubGPT\images\images\title_bar_icon_original.ico"
+UninstallDisplayIcon="C:\Users\Ali\Desktop\SubGPT\images\images\icon.ico"
 AppPublisher=aalramadan
 
 

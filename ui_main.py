@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainjfyrIP.ui'
+## Form generated from reading UI file 'mainWFwKKl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -19,15 +19,15 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGridLayout, QHBoxLayout, QHeaderView, QLabel,
     QLineEdit, QMainWindow, QPlainTextEdit, QPushButton,
     QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
-    QStatusBar, QTableWidget, QTableWidgetItem, QTextBrowser,
-    QVBoxLayout, QWidget)
+    QTableWidget, QTableWidgetItem, QTextBrowser, QVBoxLayout,
+    QWidget)
 import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1515, 714)
+        MainWindow.resize(1150, 714)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -36,7 +36,6 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QSize(1150, 650))
         font = QFont()
         font.setFamilies([u"Tahoma"])
-        font.setPointSize(9)
         MainWindow.setFont(font)
         MainWindow.setWindowTitle(u"SubGPT")
         icon = QIcon()
@@ -48,18 +47,18 @@ class Ui_MainWindow(object):
         self.CentralWidget.setObjectName(u"CentralWidget")
         font1 = QFont()
         font1.setFamilies([u"Tahoma"])
-        font1.setPointSize(13)
+        font1.setPointSize(12)
         font1.setBold(False)
         font1.setItalic(False)
         self.CentralWidget.setFont(font1)
         self.CentralWidget.setStyleSheet(u"* {\n"
 "    border: none;\n"
 "	border-radius: 8px;\n"
-"	font: 13pt \"Tahoma\";\n"
 "}\n"
 "QWidget { \n"
 "   background-color: transparent;\n"
 "   color: rgb(221, 221, 221);\n"
+"	font: 12pt \"Tahoma\";\n"
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QPushButton {\n"
@@ -209,7 +208,7 @@ class Ui_MainWindow(object):
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QFrame#IconFrame {\n"
-"	border-image: url(:/images/images/images/icon.png) 0 0 0 0 stretch stretch;\n"
+"	border-image: url(:/images/images/images/title_bar_icon_original.png) 0 0 0 0 stretch stretch;\n"
 "}\n"
 "/* ///////////////////////////////////////////////////////////////////////////////////////////////// */\n"
 "QWidget#CentralWidget {	\n"
@@ -434,7 +433,6 @@ class Ui_MainWindow(object):
         self.lbl_threshold.setEnabled(True)
         sizePolicy.setHeightForWidth(self.lbl_threshold.sizePolicy().hasHeightForWidth())
         self.lbl_threshold.setSizePolicy(sizePolicy)
-        self.lbl_threshold.setMaximumSize(QSize(100, 16777215))
 
         self.gridLayout.addWidget(self.lbl_threshold, 1, 0, 1, 1)
 
@@ -646,7 +644,7 @@ class Ui_MainWindow(object):
         self.ScrollArea.setWidgetResizable(True)
         self.ScrollAreaWidgetContents = QWidget()
         self.ScrollAreaWidgetContents.setObjectName(u"ScrollAreaWidgetContents")
-        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1059, 587))
+        self.ScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1054, 606))
         self.verticalLayout_5 = QVBoxLayout(self.ScrollAreaWidgetContents)
         self.verticalLayout_5.setSpacing(0)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -770,14 +768,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.AboutFrame)
 
         MainWindow.setCentralWidget(self.CentralWidget)
-        self.statusBar = QStatusBar(MainWindow)
-        self.statusBar.setObjectName(u"statusBar")
-        self.statusBar.setFont(font)
-        MainWindow.setStatusBar(self.statusBar)
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(0)
+        self.StackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -793,10 +787,9 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">You can get the API keys from here:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://platform.openai.com/api-keys\"><span style=\" font-size:10pt; text-decoration: underline; color:#739ef7;\">https://platform.openai.com/api-keys</span></a></p></body></"
-                        "html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#739ef7;\">https://platform.openai.com/api-keys</span></p></body></html>", None))
         self.max_tokens.setText(QCoreApplication.translate("MainWindow", u"300", None))
         self.lbl_max_tokens.setText(QCoreApplication.translate("MainWindow", u"Input Tokens", None))
         self.alignment_box.setText(QCoreApplication.translate("MainWindow", u"Fix Alignment", None))
@@ -806,7 +799,7 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">More tokens can improve translation accuracy; but might cause alignment issues</span></p></body></html>", None))
         self.lbl_model.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Model:</p></body></html>", None))
         self.combo_model.setItemText(0, QCoreApplication.translate("MainWindow", u"GPT 4o", None))
@@ -825,7 +818,7 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt; color:#a1a1a1;\">Compares input-output embeddings to enhance translation accuracy [0, 1] where 1 indicate perfect translation and indicates no similarity between input and output</span></p></body></html>", None))
         self.lbl_title.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:28pt;\">SubGPT</span></p></body></html>", None))
         self.loading_gif.setText("")
@@ -853,16 +846,21 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Tahoma'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Tahoma'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt;\">SubGPT</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">v1.1.0</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-inden"
-                        "t:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">v1.1</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:"
+                        "0; text-indent:0px; font-weight:700;\"><br /></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Provides translations for multiple languages using OpenAI's GPT</p>\n"
 "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Developers</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">aalramadan</p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">HusseinAbuRayyash</p></body></html>", None))
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">Researchers and Developers</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ali Al-Ramadan</p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">HusseinAbuRayyash</p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-ty"
+                        "pe:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         pass
     # retranslateUi
 
