@@ -7,20 +7,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1150</width>
-    <height>714</height>
+    <width>1156</width>
+    <height>728</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1150</width>
-    <height>650</height>
+    <width>1024</width>
+    <height>728</height>
    </size>
   </property>
   <property name="font">
@@ -60,6 +60,7 @@ QWidget {
    color: rgb(221, 221, 221);
 	font: 12pt &quot;Tahoma&quot;;
 }
+
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 QPushButton {
 	background-repeat: no-repeat; 
@@ -79,7 +80,9 @@ QPushButton:disabled {
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 QComboBox{
+	border-radius: 8px;
 	background-color: rgb(33, 37, 43);
+	border-radius: 8px;
 }
 QComboBox:hover{
 	border: 2px solid rgb(61, 70, 86);
@@ -87,15 +90,24 @@ QComboBox:hover{
 QComboBox::drop-down {
 	background-image: url(:/icons/images/icons/cil-arrow-bottom.png);
 	background-position: center;
-	background-repeat: no-reperat;
- }
+	background-repeat: no-repeat;
+}
 QComboBox QAbstractItemView {
 	background-color: rgb(33, 37, 43);
+	padding: 10px;
+	border-radius: 8px;
 }
-
+QComboBox QAbstractItemView::item:selected {
+	background-color: rgb(0, 128, 255); /* Light blue*/
+	border: none;
+}
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 QTableWidget {
     gridline-color: rgb(33, 37, 43); 
+}
+
+QTableWidget QAbstractScrollArea {
+    background-color: transparent;
 }
 
 QTableWidget::item{
@@ -114,11 +126,17 @@ QTableWidget QTableCornerButton::section {
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 QLineEdit {
+	border-radius: 8px;
 	background-color: rgb(33, 37, 43);
+    selection-background-color: rgb(0, 128, 255);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 86);
 }
 /* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 QPlainTextEdit {
 	background-color: rgb(33, 37, 43);
+	selection-background-color: rgb(0, 128, 255);
 }
 QPlainTextEdit:hover {
 	border: 2px solid rgb(64, 71, 86);
@@ -572,7 +590,10 @@ li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Tahoma'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#a1a1a1;&quot;&gt;You can get the API keys from here:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#739ef7;&quot;&gt;https://platform.openai.com/api-keys&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://platform.openai.com/api-keys&quot;&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline; color:#739ef7;&quot;&gt;https://platform.openai.com/api-keys&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -718,11 +739,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <item>
              <property name="text">
               <string>GPT 4 Turbo</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>GPT 4</string>
              </property>
             </item>
             <item>
@@ -1049,7 +1065,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </size>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="Home">
                 <layout class="QVBoxLayout" name="verticalLayout">
@@ -1324,8 +1340,8 @@ Remember, your role is solely translation. No additional responses are required.
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1054</width>
-                      <height>606</height>
+                      <width>1060</width>
+                      <height>620</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1497,6 +1513,9 @@ Remember, your role is solely translation. No additional responses are required.
                        <iconset resource="resources.qrc">
                         <normaloff>:/icons/images/icons/cil-media-play.png</normaloff>:/icons/images/icons/cil-media-play.png</iconset>
                       </property>
+                      <property name="checkable">
+                       <bool>true</bool>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -1618,8 +1637,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Researchers and Developers&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ali Al-Ramadan&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;HusseinAbuRayyash&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hussein Abu Rayyash&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

@@ -1,15 +1,14 @@
 from PySide6.QtWidgets import (QMessageBox, QFileDialog, QTableWidgetItem,
                                QHeaderView,QAbstractItemView)
-from PySide6.QtCore import QSize, QEasingCurve, QPropertyAnimation, Qt
+from PySide6.QtCore import QSize, QEasingCurve, QPropertyAnimation, Qt, QTimer
 from PySide6.QtGui import QIcon, QMovie 
 from srt import parse, SRTParseError, compose
-from openai import AsyncOpenAI, APIConnectionError, AuthenticationError
-from qasync import asyncSlot
-from asyncio import sleep
+from openai import AsyncOpenAI
+from qasync import asyncSlot, QEventLoop
+from asyncio import sleep, set_event_loop
 import numpy as np
 import tiktoken
 import json
-import re
 
 template_file = None # Stores the loaded .srt file
 template_loaded = False # Checked if template is loaded. Needed so that "Next" button doesn't keep loading the same file.
@@ -29,54 +28,56 @@ class SETTINGS:
     MODEL_MAP = {
     "GPT 4o": "gpt-4o",
     "GPT 4 Turbo": "gpt-4-turbo",
-    "GPT 4": "gpt-4",
     "GPT 3.5 Turbo": "gpt-3.5-turbo",
     }
-
-
 
 def button_click(main_window, btn):
     btn_name = btn.objectName()
     if btn_name == "btn_back":
         main_window.StackedWidget.setCurrentWidget(main_window.Home)
 
-def expand_settings(main_window):
-    width = main_window.SettingsExpand.width()
-    if width == 0:
-        widthExtended = SETTINGS.EXPAND_WIDTH 
-    else:
-        widthExtended = 0   
-    main_window.left_box = QPropertyAnimation(main_window.SettingsExpand, b"minimumWidth")
-    main_window.left_box.setDuration(SETTINGS.TIME_ANIMATION)
-    main_window.left_box.setStartValue(width)
-    main_window.left_box.setEndValue(widthExtended)
-    main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
-    main_window.left_box.start()
+def animate_widget(main_window, widget, next_widget=None): 
+    width = widget.width()
+    width_extended = SETTINGS.EXPAND_WIDTH if width == 0 else 0
+    main_window.animate_expand = QPropertyAnimation(widget, b"minimumWidth")
+    main_window.animate_expand.setDuration(SETTINGS.TIME_ANIMATION)
+    main_window.animate_expand.setStartValue(width)
+    main_window.animate_expand.setEndValue(width_extended)
+    main_window.animate_expand.setEasingCurve(QEasingCurve.InOutQuart)
+    main_window.animate_expand.finished.connect(lambda: animate_widget(main_window, next_widget) if next_widget else None)
+    main_window.animate_expand.start()
 
-def on_box_cosine_changed(main_window, check_box):
-    if check_box.isChecked():
-        main_window.threshold_edit.setEnabled(True)
+def expand_settings(main_window):
+    main_window.btn_settings.setEnabled(False)
+    main_window.btn_info.setEnabled(False)
+    if main_window.AboutFrame.width() == SETTINGS.EXPAND_WIDTH:
+        animate_widget(main_window, main_window.AboutFrame, main_window.SettingsExpand)
+        QTimer.singleShot(2 * SETTINGS.TIME_ANIMATION, lambda: enable_buttons(main_window)) 
     else:
-        main_window.threshold_edit.setEnabled(False)
+        animate_widget(main_window, main_window.SettingsExpand)
+        QTimer.singleShot(SETTINGS.TIME_ANIMATION, lambda: enable_buttons(main_window)) 
 
 def expand_about(main_window):
-    width = main_window.AboutFrame.width()
-    if width == 0:
-        widthExtended = SETTINGS.EXPAND_WIDTH 
+    main_window.btn_settings.setEnabled(False)
+    main_window.btn_info.setEnabled(False)
+    if main_window.SettingsExpand.width() == SETTINGS.EXPAND_WIDTH:
+        animate_widget(main_window, main_window.SettingsExpand, main_window.AboutFrame)
+        QTimer.singleShot(2 * SETTINGS.TIME_ANIMATION, lambda: enable_buttons(main_window)) 
     else:
-        widthExtended = 0   
-    main_window.left_box = QPropertyAnimation(main_window.AboutFrame, b"minimumWidth")
-    main_window.left_box.setDuration(SETTINGS.TIME_ANIMATION)
-    main_window.left_box.setStartValue(width)
-    main_window.left_box.setEndValue(widthExtended)
-    main_window.left_box.setEasingCurve(QEasingCurve.InOutQuart)
-    main_window.left_box.start()
+        animate_widget(main_window, main_window.AboutFrame)
+        QTimer.singleShot(SETTINGS.TIME_ANIMATION, lambda: enable_buttons(main_window)) 
+
+def enable_buttons(main_window):
+    main_window.btn_settings.setEnabled(True)
+    main_window.btn_info.setEnabled(True)
+
 
 def issue_warning_error(main_window, title, text): 
     QMessageBox.warning(main_window, title, text)
 
 def load_template_file(main_window):
     global template_loaded
+    main_window.btn_save.setEnabled(False)
     dialog = QFileDialog()
     dialog.setNameFilters(["Custom Files (*.srt)", "All Files (*)"])
     selected_file = ""
@@ -179,7 +180,12 @@ def save_template_file(main_window):
         QMessageBox.information(main_window, "File Saved", "File was written successfully!")
 
 
-
+def on_box_cosine_changed(main_window, check_box):
+    if check_box.isChecked():
+        main_window.threshold_edit.setEnabled(True)
+    else:
+        main_window.threshold_edit.setEnabled(False)
+        
 def cosine_similarity(sentences_embeddings, translations_embeddings):
     dot_product = np.dot(sentences_embeddings, translations_embeddings)
 
@@ -308,15 +314,13 @@ async def communicate_with_api(main_window):
                             messages=[
                                 {"role": "system", "content": prompt},
                                 {"role": "user", "content": json_string}
-                            ]
+                            ],
+                            response_format={ "type": "json_object" },
                         )         
                         dict_sentences = response.choices[0].message.content
 
-                        try:
-                            translations_sentences = list(json.loads(dict_sentences).values())
-                        except:
-                            translations_sentences = re.findall(r'": "(.*?)(?="[,}])', dict_sentences)
-                    
+                        translations_sentences = list(json.loads(dict_sentences).values())
+
                         if main_window.alignment_box.isChecked():
                             if len(translations_sentences) != len(outer_value.values()):
                                 continue

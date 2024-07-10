@@ -1,20 +1,14 @@
 from ui_main import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtGui import QIcon
-from qasync import QEventLoop
 import ui_functions 
-import asyncio
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowIcon(QIcon(":/images/images/images/icon.png"))
 
-        self.loop = loop or asyncio.get_event_loop()
+        self.loop = loop or ui_functions.asyncio.get_event_loop()
+
         self.setupUi(self) # Initializes ui_main.py
-        self.maximized = False # Used to check if window is maximized
-        self.StackedWidget.setCurrentWidget(self.Home)
-        self.btn_start.setCheckable(True)
 
         self.btn_open.clicked.connect(lambda: ui_functions.load_template_file(self))
         self.btn_save.clicked.connect(lambda: ui_functions.save_template_file(self))
@@ -30,8 +24,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 if __name__ == "__main__":
     app = QApplication()
 
-    loop = QEventLoop(app) 
-    asyncio.set_event_loop(loop)
+    loop = ui_functions.QEventLoop(app) 
+    ui_functions.set_event_loop(loop)
 
     window = MainWindow()
     window.show()
