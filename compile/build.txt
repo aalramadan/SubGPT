@@ -5,4 +5,5 @@ Build (Mac OS):
 pyinstaller --onefile --windowed --hidden-import=tiktoken_ext.openai_public --hidden-import=tiktoken_ext --icon="/Users/Ali/Desktop/SubGPT/images/images/icon.icns" main.py
 
 
-* Use for debugging --> --console instead of --windowed
+* Use for debugging:
+--console instead of --windowed
